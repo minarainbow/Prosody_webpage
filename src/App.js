@@ -59,6 +59,8 @@ const styles = theme => ({
     marginBottom: 50
   },
   container2: {
+    display: 'flex',
+    felxDirection: 'column',
     textAlign: 'center',
   },
   summaryAPI: {
@@ -128,10 +130,25 @@ const featuredPosts = [
     price: '3,599,998 won',
     description: '여기에 설명이 들어갑니다 어쩌구 저쩌구',
   }
+]
 
+const APIfeatures = [
+  {
+    title: '감정조절', 
+    description: 'Prosody TTS는 무뚝뚝한 기계음이 아닌,'
+  },
+  {
+    title: '커스터마이징', 
+    description: 'Prosody TTS는 같은 문구라도 사람들처럼'
+  },
+  {
+    title: '다국어 지원', 
+    description: 'Prosody TTS는 한 사람의 목소리로'
+  }
 ]
 
 class App extends Component {
+
   render() {
     const {classes} = this.props;
 
@@ -172,12 +189,39 @@ class App extends Component {
               풍부한 감정을 가지고 말하는 인공지능을 만나보세요
               </Typography>
             </div>
-            <div className={classes.container2}  width="auto">
-              Humelo TTS는 무엇이 다른가요?<br />
-              <img src={Emotions} alt="Emotions" width="30%"/>
-              <img src={Customizing} alt="Customizing" width="30%"/>
-              <img src={MultiLingual} alt="Multilingual" width="30%"/>
+            <div align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
+            <div className={classes.container2} >
+              <div className={classes.APIfeatures} width="30%" >
+                <img src={Emotions} alt="Emotions" width="100%"/>
+              </div>
+              <div className={classes.APIfeatures} width="30%"  >
+                <img src={Customizing} alt="Customizing" width="100%"/>
+              </div>
+              <div className={classes.APIfeatures} width="30%" >
+                <img src={MultiLingual} alt="Multilingual" width="100%"/>
+              </div>
             </div>
+            <Grid container spacing={40} className={classes.cardGrid}>
+            {featuredPosts.map(post => (
+              <Grid item key={post.title} xs={12} md={6}>
+                <Card className={classes.card}>
+                  <div className={classes.cardDetails}>
+                    <CardContent>
+                      <Typography component="h2" variant="h5">
+                        {post.title}
+                      </Typography>
+                      <Typography variant="subtitle1" color="textSecondary">
+                        {post.price}
+                      </Typography>
+                      <Typography variant="subtitle1" paragraph>
+                        {post.description}
+                      </Typography>
+                    </CardContent>
+                  </div>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         </main>
         </div>
       </React.Fragment>
