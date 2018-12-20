@@ -30,13 +30,15 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
+      width: '100%',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
   },
   toolbarMain: {
-    borderBottom: `1px solid ${theme.palette.grey[300]}`,
+    margin: '30px',
+    marginBottom: '0px',
+    borderBottom: `2px solid ${theme.palette.grey[300]}`,
   },
   toolbarTitle: {
     marginLeft: theme.spacing.unit,
@@ -44,44 +46,45 @@ const styles = theme => ({
     color: theme.palette.grey[600],
   },
   toolbarMenu: {
-    width: 400,
+    width: '30%',
     margin: 'auto',
     textAlign: 'center',
     justifyContent: 'space-between',
     marginTop: theme.spacing.unit,
   },
   mypageIcon: {
-    height:50,
-    width:50,
+    fontSize: '40px',
   },
   container: {
     position: 'relative',
-    marginBottom: 50
   },
-  container2: {
+  featureContainer: {
     display: 'flex',
     felxDirection: 'column',
     textAlign: 'center',
   },
-  summaryAPI: {
+  keySentence: {
+    marginTop: 50,
+    fontSize: '25px',
+    fontWeight: 'bold',
+
+  },
+  APITitle: {
     // fontFamily: '굴림',
     position: 'absolute',
     top: 70,
     left: 200,
     color: 'white',
   },
-  detailAPI: {
+  APIDetail: {
     // fontFamily: '굴림',
     position: 'absolute',
     top: 140,
     left: 200,
     color: 'white',
   },
-  mainFeaturedPostContent: {
-    padding: `${theme.spacing.unit * 6}px`,
-    [theme.breakpoints.up('md')]: {
-      paddingRight: 0,
-    },
+  feature: {
+    width: '80%',
   },
   mainGrid: {
     marginTop: theme.spacing.unit * 3,
@@ -135,15 +138,24 @@ const featuredPosts = [
 const APIfeatures = [
   {
     title: '감정조절', 
-    description: 'Prosody TTS는 무뚝뚝한 기계음이 아닌,'
+    description1: 'Prosody TTS는 무뚝뚝한 기계음이 아닌,',
+    description2: '디테일한 감정까지 목소리에 담아냅니다.',
+    description3: '행복한, 화난, 슬픈, 침착한 목소리 등의',
+    description4: '다양한 감정을 담아 개성있게 쓸 수 있습니다.'
   },
   {
     title: '커스터마이징', 
-    description: 'Prosody TTS는 같은 문구라도 사람들처럼'
+    description1: 'Prosody TTS는 같은 문구라도 사람들처럼',
+    description2: '다양한 억양과 톤으로 커스터마이징이 가능합니다.',
+    description3: '높은 톤, 낮은 톤, 굴곡을 조절하여',
+    description4: 'TTS에 개성을 담을 수 있습니다.'
   },
   {
     title: '다국어 지원', 
-    description: 'Prosody TTS는 한 사람의 목소리로'
+    description1: 'Prosody TTS는 한 사람의 목소리로',
+    description2: '다양한 언어를 말합니다.',
+    description3: '하나의 목소리로 세상의 다양한 언어를 말해보세요.',
+    description4: ''
   }
 ]
 
@@ -166,13 +178,13 @@ class App extends Component {
               className={classes.toolbarTitle}>
               Prosody TTS
             </Typography>
-            <IconButton className={classes.mypageIcon} color="action">
-              <PersonIcon  style={{fontSize: '30px'}}/>
+            <IconButton color="action">
+              <PersonIcon  className={classes.mypageIcon} />
             </IconButton>
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
           {sections.map(section => (
-            <Button color="inherit" noWrap key={section}>
+            <Button color="inherit" style={{fontSize: '20px'}} key={section}>
               {section}
             </Button>
           ))}
@@ -180,27 +192,45 @@ class App extends Component {
         <main>
             <div className={classes.container}  width="auto">
               <img src={MicBlend} alt="MicBlend" width="100%"/>
-              <Typography className={classes.summaryAPI} variant="h4">
+              <Typography className={classes.APITitle} variant="h4">
               맞춤형 목소리 합성 API
               </Typography>
-              <Typography className={classes.detailAPI} variant="h6">
+              <Typography className={classes.APIDetail} variant="h6">
               사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
               IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
               풍부한 감정을 가지고 말하는 인공지능을 만나보세요
               </Typography>
             </div>
-            <div align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
-            <div className={classes.container2} >
-              <div className={classes.APIfeatures} width="30%" >
-                <img src={Emotions} alt="Emotions" width="100%"/>
+            <Typography
+              className={classes.keySentence}
+              align="center">Humelo TTS는 무엇이 다른가요?<br /></Typography>
+            <div className={classes.featureContainer}>
+              <div>
+                <img src={Emotions} alt="Emotions" width="80%"/>
               </div>
-              <div className={classes.APIfeatures} width="30%"  >
-                <img src={Customizing} alt="Customizing" width="100%"/>
+              <div>
+                <img src={Customizing} alt="Customizing" width="80%"/>
               </div>
-              <div className={classes.APIfeatures} width="30%" >
-                <img src={MultiLingual} alt="Multilingual" width="100%"/>
+              <div>
+                <img src={MultiLingual} alt="Multilingual" width="80%"/>
               </div>
             </div>
+            <div className={classes.featureContainer}>
+              {APIfeatures.map(feature => (
+                <div className={classes.feature}>
+                  <Typography component="h2" variant="h5">
+                    {feature.title}
+                  </Typography><br />
+                  <Typography paragraph>
+                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
+                  </Typography>
+                </div>
+              ))}
+            </div>
+            <Typography
+              className={classes.keySentence}
+              align="center">가격 정책<br />
+            </Typography>
             <Grid container spacing={40} className={classes.cardGrid}>
             {featuredPosts.map(post => (
               <Grid item key={post.title} xs={12} md={6}>
