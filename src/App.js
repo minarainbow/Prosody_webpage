@@ -56,34 +56,36 @@ const styles = theme => ({
     fontSize: '40px',
   },
   container: {
-    position: 'relative',
+    width: '100%',
   },
   featureContainer: {
+    paddingLeft: '10%',
+    paddingRight: '10%',
+    marginBottom: '5%',
+    width: '80%',
     display: 'flex',
     felxDirection: 'column',
-    textAlign: 'center',
   },
   keySentence: {
-    marginTop: 50,
+    marginBottom: '3%',
     fontSize: '25px',
     fontWeight: 'bold',
 
   },
   APITitle: {
-    // fontFamily: '굴림',
-    position: 'absolute',
-    top: 70,
-    left: 200,
-    color: 'white',
+    position: 'relative',
+    top: '-400px',
+    right: '-200px',
+    color: 'white'
   },
   APIDetail: {
-    // fontFamily: '굴림',
-    position: 'absolute',
-    top: 140,
-    left: 200,
+    position: 'relative',
+    top: '-370px',
+    right: '-200px',
     color: 'white',
   },
   feature: {
+    textAlign: 'center',
     width: '80%',
   },
   mainGrid: {
@@ -122,7 +124,7 @@ const sections = [
   '지원 및 문의',
 ];
 
-const featuredPosts = [
+const prices = [
   {
     title: 'Basic',
     price: '99.99 won',
@@ -141,21 +143,24 @@ const APIfeatures = [
     description1: 'Prosody TTS는 무뚝뚝한 기계음이 아닌,',
     description2: '디테일한 감정까지 목소리에 담아냅니다.',
     description3: '행복한, 화난, 슬픈, 침착한 목소리 등의',
-    description4: '다양한 감정을 담아 개성있게 쓸 수 있습니다.'
+    description4: '다양한 감정을 담아 개성있게 쓸 수 있습니다.',
+    image: Emotions,
   },
   {
     title: '커스터마이징', 
     description1: 'Prosody TTS는 같은 문구라도 사람들처럼',
     description2: '다양한 억양과 톤으로 커스터마이징이 가능합니다.',
     description3: '높은 톤, 낮은 톤, 굴곡을 조절하여',
-    description4: 'TTS에 개성을 담을 수 있습니다.'
+    description4: 'TTS에 개성을 담을 수 있습니다.',
+    image: Customizing,
   },
   {
     title: '다국어 지원', 
     description1: 'Prosody TTS는 한 사람의 목소리로',
     description2: '다양한 언어를 말합니다.',
     description3: '하나의 목소리로 세상의 다양한 언어를 말해보세요.',
-    description4: ''
+    description4: '',
+    image: MultiLingual,
   }
 ]
 
@@ -190,7 +195,7 @@ class App extends Component {
           ))}
         </Toolbar>
         <main>
-            <div className={classes.container}  width="auto">
+            <div className={classes.container} >
               <img src={MicBlend} alt="MicBlend" width="100%"/>
               <Typography className={classes.APITitle} variant="h4">
               맞춤형 목소리 합성 API
@@ -205,19 +210,9 @@ class App extends Component {
               className={classes.keySentence}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></Typography>
             <div className={classes.featureContainer}>
-              <div>
-                <img src={Emotions} alt="Emotions" width="80%"/>
-              </div>
-              <div>
-                <img src={Customizing} alt="Customizing" width="80%"/>
-              </div>
-              <div>
-                <img src={MultiLingual} alt="Multilingual" width="80%"/>
-              </div>
-            </div>
-            <div className={classes.featureContainer}>
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
+                <img src={feature.image}  />
                   <Typography component="h2" variant="h5">
                     {feature.title}
                   </Typography><br />
@@ -232,19 +227,19 @@ class App extends Component {
               align="center">가격 정책<br />
             </Typography>
             <Grid container spacing={40} className={classes.cardGrid}>
-            {featuredPosts.map(post => (
-              <Grid item key={post.title} xs={12} md={6}>
+            {prices.map(price => (
+              <Grid item key={price.title} xs={12} md={6}>
                 <Card className={classes.card}>
                   <div className={classes.cardDetails}>
                     <CardContent>
                       <Typography component="h2" variant="h5">
-                        {post.title}
+                        {price.title}
                       </Typography>
                       <Typography variant="subtitle1" color="textSecondary">
-                        {post.price}
+                        {price.price}
                       </Typography>
                       <Typography variant="subtitle1" paragraph>
-                        {post.description}
+                        {price.description}
                       </Typography>
                     </CardContent>
                   </div>
