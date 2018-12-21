@@ -1,7 +1,4 @@
 
-import Responsive from 'react-responsive';
-import MediaQuery from 'react-responsive';
-
 const styles = theme => ({
   
     layout: {
@@ -15,8 +12,8 @@ const styles = theme => ({
       },
     },
     toolbarMain: {
-      margin: '30px',
-      marginBottom: '0px',
+      marginTop: '30px',
+      marginLeft: '30px',
       borderBottom: `2px solid ${theme.palette.grey[300]}`,
     },
     toolbarTitle: {
@@ -25,7 +22,7 @@ const styles = theme => ({
       color: theme.palette.grey[600],
     },
     toolbarMenu: {
-      width: '30%',
+      width: '35%',
       margin: 'auto',
       textAlign: 'center',
       justifyContent: 'space-between',
@@ -36,6 +33,7 @@ const styles = theme => ({
     },
     container: {
       width: '100%',
+      marginBottom: "8%",
     },
     featureContainer: {
       paddingLeft: '10%',
@@ -52,20 +50,37 @@ const styles = theme => ({
   
     },
     APITitle: {
-      position: 'relative',
-      top: '-400px',
-      right: '-200px',
+      position: 'absolute',
+      top: '300px',
+      left: '200px',
       color: 'white'
     },
     APIDetail: {
-      position: 'relative',
-      top: '-370px',
-      right: '-200px',
+      position: 'absolute',
+      top: '370px',
+      left: '200px',
+      color: 'white',
+    },
+    APITitleTablet: {
+      position: 'absolute',
+      top: '250px',
+      left: '150px',
+      color: 'white'
+    },
+    APIDetailTablet: {
+      position: 'absolute',
+      top: '300px',
+      left: '150px',
       color: 'white',
     },
     feature: {
+      width: '50%',
       textAlign: 'center',
-      width: '80%',
+    },
+    featureTablet: {
+      width: '40%',
+      textAlign: 'center',
+      justifyContent: 'space-between',
     },
     mainGrid: {
       marginTop: theme.spacing.unit * 3,
@@ -79,9 +94,9 @@ const styles = theme => ({
     cardMedia: {
       width: 160,
     },
-    markdown: {
-      padding: `${theme.spacing.unit * 3}px 0`,
-    },
+    // markdown: {
+    //   padding: `${theme.spacing.unit * 3}px 0`,
+    // },
     sidebarAboutBox: {
       padding: theme.spacing.unit * 2,
       backgroundColor: theme.palette.grey[200],

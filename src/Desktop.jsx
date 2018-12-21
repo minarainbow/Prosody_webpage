@@ -35,7 +35,7 @@ class Desktop extends Component {
               align="left"
               noWrap
               className={classes.toolbarTitle}>
-              Prosody TTS
+              Desktop
             </Typography>
             <IconButton color="action">
               <PersonIcon  className={classes.mypageIcon} />
@@ -43,7 +43,7 @@ class Desktop extends Component {
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
           {sections.map(section => (
-            <Button color="inherit" style={{fontSize: '20px'}} key={section}>
+            <Button color="inherit" style={{fontSize: '20px', width: '30%'}} key={section}>
               {section}
             </Button>
           ))}
@@ -66,7 +66,7 @@ class Desktop extends Component {
             <div className={classes.featureContainer}>
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
-                <img src={feature.image}  />
+                <img src={feature.image} width="90%" />
                   <Typography component="h2" variant="h5">
                     {feature.title}
                   </Typography><br />

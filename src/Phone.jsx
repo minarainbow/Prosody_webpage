@@ -26,7 +26,7 @@ import MediaQuery from 'react-responsive';
 import DesktopBreakpoint from './responsive_utilities/desktop_breakpoint';
 import {sections, APIfeatures, prices} from './scripts';
 
-class Desktop extends Component {
+class Phone extends Component {
 
   render() {
     const {classes} = this.props;
@@ -43,15 +43,16 @@ class Desktop extends Component {
               align="left"
               noWrap
               className={classes.toolbarTitle}>
-              Prosody TTS
+              Phone
             </Typography>
             <IconButton color="action">
               <PersonIcon  className={classes.mypageIcon} />
             </IconButton>
           </Toolbar>
-          <Toolbar variant="dense" className={classes.toolbarMenu}>
+          <Toolbar variant="dense" className={classes.toolbarMenu} style={{width: '40%'}}>
           {sections.map(section => (
-            <Button color="inherit" style={{fontSize: '20px'}} key={section}>
+            <Button color="inherit" 
+              style={{fontSize: '18px'}} key={section}>
               {section}
             </Button>
           ))}
@@ -59,10 +60,10 @@ class Desktop extends Component {
         <main>
             <div className={classes.container} >
               <img src={MicBlend} alt="MicBlend" width="100%"/>
-              <Typography className={classes.APITitle} variant="h4">
+              <Typography className={classes.APITitleTablet} variant="h4">
               맞춤형 목소리 합성 API
               </Typography>
-              <Typography className={classes.APIDetail} variant="h6">
+              <Typography className={classes.APIDetailTablet} variant="h6">
               사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
               IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
               풍부한 감정을 가지고 말하는 인공지능을 만나보세요
@@ -73,8 +74,8 @@ class Desktop extends Component {
               align="center">Humelo TTS는 무엇이 다른가요?<br /></Typography>
             <div className={classes.featureContainer}>
               {APIfeatures.map(feature => (
-                <div className={classes.feature}>
-                <img src={feature.image}  />
+                <div className={classes.featureTablet}>
+                <img src={feature.image} width="80%"/>
                   <Typography component="h2" variant="h5">
                     {feature.title}
                   </Typography><br />
@@ -116,4 +117,4 @@ class Desktop extends Component {
   }
 }
 
-export default Desktop;
+export default Phone;
