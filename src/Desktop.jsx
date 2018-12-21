@@ -50,29 +50,29 @@ class Desktop extends Component {
         </Toolbar>
         <main>
             <div className={classes.container} >
-              <img src={MicBlend} alt="MicBlend" width="100%"/>
-              <Typography className={classes.APITitle} variant="h4">
+              <img src={MicBlend} alt="MicBlend" width="100%" />
+              <div className={classes.APITitle} >
               맞춤형 목소리 합성 API
-              </Typography>
-              <Typography className={classes.APIDetail} variant="h6">
+              </div>
+              <div className={classes.APIDetail} >
               사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
               IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
               풍부한 감정을 가지고 말하는 인공지능을 만나보세요
-              </Typography>
+              </div>
             </div>
-            <Typography
+            <div
               className={classes.keySentence}
-              align="center">Humelo TTS는 무엇이 다른가요?<br /></Typography>
+              align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
             <div className={classes.featureContainer}>
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
                 <img src={feature.image} width="90%" />
-                  <Typography component="h2" variant="h5">
+                  <div style={{fontSize: "25px"}}>
                     {feature.title}
-                  </Typography><br />
-                  <Typography paragraph>
+                  </div><br />
+                  <div style={{fontSize: "19px"}}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
-                  </Typography>
+                  </div>
                 </div>
               ))}
             </div>

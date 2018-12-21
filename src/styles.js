@@ -12,8 +12,10 @@ const styles = theme => ({
       },
     },
     toolbarMain: {
-      marginTop: '30px',
-      marginLeft: '30px',
+      width: 'auto',
+      marginTop: '3%',
+      marginLeft: '3%',
+      marginRight: '3%',
       borderBottom: `2px solid ${theme.palette.grey[300]}`,
     },
     toolbarTitle: {
@@ -41,11 +43,21 @@ const styles = theme => ({
       marginBottom: '5%',
       width: '80%',
       display: 'flex',
-      felxDirection: 'column',
+    },
+    featureContainerTablet: {
+      marginBottom: '5%',
+      width: '100%',
+      display: 'flex',
+    },
+    featureContainerPhone: {
+      paddingLeft: '20%',
+      paddingRight: '20%',
+      width: '60%',
+      textAlign: 'center',
     },
     keySentence: {
       marginBottom: '3%',
-      fontSize: '25px',
+      fontSize: '1.7vw',
       fontWeight: 'bold',
   
     },
@@ -53,25 +65,15 @@ const styles = theme => ({
       position: 'absolute',
       top: '300px',
       left: '200px',
-      color: 'white'
+      color: 'white',
+      fontSize: '2vw',
     },
     APIDetail: {
       position: 'absolute',
       top: '370px',
       left: '200px',
       color: 'white',
-    },
-    APITitleTablet: {
-      position: 'absolute',
-      top: '250px',
-      left: '150px',
-      color: 'white'
-    },
-    APIDetailTablet: {
-      position: 'absolute',
-      top: '300px',
-      left: '150px',
-      color: 'white',
+      fontSize: '1.1vw',
     },
     feature: {
       width: '50%',
