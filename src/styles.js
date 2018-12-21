@@ -1,3 +1,7 @@
+
+import Responsive from 'react-responsive';
+import MediaQuery from 'react-responsive';
+
 const styles = theme => ({
   
     layout: {
@@ -90,6 +94,8 @@ const styles = theme => ({
       marginTop: theme.spacing.unit * 8,
       padding: `${theme.spacing.unit * 6}px 0`,
     },
+
+    
   });
 
   export default styles;
