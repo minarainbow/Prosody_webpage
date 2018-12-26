@@ -30,7 +30,7 @@ class Desktop extends Component {
             <img src={logo} className="logo" alt="logo" height="50" width="50" />
             <Typography
               component="h2"
-              variant="h5"
+              variant="h4"
               color="inherit"
               align="left"
               noWrap
@@ -38,13 +38,13 @@ class Desktop extends Component {
               Desktop
             </Typography>
             <IconButton color="action">
-              <PersonIcon  className={classes.mypageIcon} />
+              <PersonIcon  className={classes.defaultIcon} />
             </IconButton>
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
           {sections.map(section => (
             <Button color="inherit" style={{fontSize: '20px', width: '30%'}} key={section}>
-              {section}
+              {section.title}
             </Button>
           ))}
         </Toolbar>
@@ -67,10 +67,10 @@ class Desktop extends Component {
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
                 <img src={feature.image} width="90%" />
-                  <div style={{fontSize: "25px"}}>
+                  <div style={{fontSize: "28px", fontWeight: "bold"}}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "19px"}}>
+                  <div style={{fontSize: "21px"}}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
                   </div>
                 </div>
@@ -80,7 +80,7 @@ class Desktop extends Component {
               className={classes.keySentence}
               align="center">가격 정책<br />
             </Typography>
-            <Grid container spacing={40} className={classes.cardGrid}>
+            <Grid container  className={classes.cardGrid}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={classes.card}>

@@ -18,6 +18,13 @@ const styles = theme => ({
       marginRight: '3%',
       borderBottom: `2px solid ${theme.palette.grey[300]}`,
     },
+    toolbarMainPhone: {
+      width: 'auto',
+      marginTop: '3%',
+      marginRight: '3%',
+      borderBottom: `2px solid ${theme.palette.grey[300]}`,
+      marginBottom: '3%',
+    },
     toolbarTitle: {
       marginLeft: theme.spacing.unit,
       flex: 1,
@@ -30,18 +37,18 @@ const styles = theme => ({
       justifyContent: 'space-between',
       marginTop: theme.spacing.unit,
     },
-    mypageIcon: {
-      fontSize: '40px',
+    defaultIcon: {
+      fontSize: '38px',
     },
     container: {
       width: '100%',
       marginBottom: "8%",
     },
     featureContainer: {
-      paddingLeft: '10%',
-      paddingRight: '10%',
+      marginLeft: '7%',
+      marginRight: '7%',
       marginBottom: '5%',
-      width: '80%',
+      width: '86%',
       display: 'flex',
     },
     featureContainerTablet: {
@@ -50,16 +57,21 @@ const styles = theme => ({
       display: 'flex',
     },
     featureContainerPhone: {
-      paddingLeft: '20%',
-      paddingRight: '20%',
-      width: '60%',
+      paddingLeft: '15%',
+      paddingRight: '15%',
+      width: '70%',
       textAlign: 'center',
     },
     keySentence: {
       marginBottom: '3%',
-      fontSize: '1.7vw',
+      fontSize: '2.1vw',
       fontWeight: 'bold',
-  
+    },
+    keySentencePhone: {
+      marginTop: '6%',
+      marginBottom: '6%',
+      fontSize: '21px',
+      fontWeight: 'bold',
     },
     APITitle: {
       position: 'absolute',
@@ -94,7 +106,7 @@ const styles = theme => ({
       flex: 1,
     },
     cardMedia: {
-      width: 160,
+      width: 'auto',
     },
     // markdown: {
     //   padding: `${theme.spacing.unit * 3}px 0`,
@@ -112,6 +124,44 @@ const styles = theme => ({
       padding: `${theme.spacing.unit * 6}px 0`,
     },
 
+
+    menuButton: {
+      marginLeft: 12,
+      marginRight: 36,
+    },
+    menuButtonHidden: {
+      display: 'none',
+    },
+    title: {
+      flexGrow: 1,
+    },
+    drawerPaper: {
+      whiteSpace: 'nowrap',
+      width: 220,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerPaperClose: {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing.unit * 7,
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing.unit * 9,
+      },
+    },
+
+    toolbarIcon: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: '0 8px',
+      ...theme.mixins.toolbar,
+    },
     
   });
 

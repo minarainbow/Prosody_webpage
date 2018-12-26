@@ -25,8 +25,26 @@ import Responsive from 'react-responsive';
 import MediaQuery from 'react-responsive';
 import DesktopBreakpoint from './responsive_utilities/desktop_breakpoint';
 import {sections, APIfeatures, prices} from './scripts';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/icons/Menu';
+import classNames from 'classnames';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import List from '@material-ui/core/List';
 
 class Phone extends Component {
+
+  state = {
+    open: false,
+  };
+
+  
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
 
   render() {
     const {classes} = this.props;
@@ -34,8 +52,8 @@ class Phone extends Component {
     return (
       <React.Fragment>
         <div className={classes.layout}>
-          <Toolbar className={classes.toolbarMain}>
-            <img src={logo} className="logo" alt="logo" height="50" width="50" />
+          <Toolbar className={classes.toolbarMainPhone}>
+            <img src={logo} className="logo" alt="logo" height="40" width="40" />
             <Typography
               component="h2"
               variant="h5"
@@ -46,47 +64,60 @@ class Phone extends Component {
               Phone
             </Typography>
             <IconButton color="action">
-              <PersonIcon  className={classes.mypageIcon} />
+              <PersonIcon  className={classes.defaultIcon} />
+            </IconButton>
+            <IconButton
+              aria-label="Open drawer" 
+              onClick={this.handleDrawerOpen}
+              className={classNames(
+                classes.menuButton,
+                this.state.open && classes.menuButtonHidden,
+              )} >
+              <MenuIcon className={classes.defaultIcon}/>
             </IconButton>
           </Toolbar>
-          <Toolbar variant="dense" className={classes.toolbarMenu} style={{width: '40%'}}>
-          {sections.map(section => (
-            <Button color="inherit" 
-              style={{fontSize: '18px'}} key={section}>
-              {section}
-            </Button>
-          ))}
-        </Toolbar>
         <main>
-          <div className={classes.container} >
+          <div  style={{display: "block"}}>
               <img src={MicBlend} alt="MicBlend" width="100%"/>
-              <div className={classes.APITitle} >
-              맞춤형 목소리 합성 API
-              </div>
-              <div className={classes.APIDetail} >
-              사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
-              IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
-              풍부한 감정을 가지고 말하는 인공지능을 만나보세요
-              </div>
+              <Drawer 
+                classes={{
+                  paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+                }}
+                open={this.state.open} anchor="right">
+                <div className={classes.toolbarIcon}>
+                  <IconButton onClick={this.handleDrawerClose}>
+                    <ChevronRightIcon />
+                  </IconButton>
+                </div>
+                <Divider />
+                {sections.map(section => (
+                  <div style={{display: "inline-block"}}>
+                  <Button color="inherit" style={{fontSize: '18px', width: '100%'}} key={section}>
+                    <section.icon color="action" className={classes.defaultIcon}/>
+                    <div > {section.title} </div>
+                  </Button>
+                  </div>
+                ))}
+              </Drawer>
             </div>
             <div
-              className={classes.keySentence}
+              className={classes.keySentencePhone}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
             <div className={classes.featureContainerPhone}>
               {APIfeatures.map(feature => (
                 <div>
-                <img src={feature.image} width="80%"/>
-                <div style={{fontSize: "25px"}}>
+                <img src={feature.image} width="60%"/>
+                <div style={{fontSize: "21px", fontWeight: "bold"}}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "18px"}}>
+                  <div style={{fontSize: "15px"}}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br /><br /><br />
                   </div>
                 </div>
               ))}
             </div>
             <Typography
-              className={classes.keySentence}
+              className={classes.keySentencePhone}
               align="center">가격 정책<br />
             </Typography>
             <Grid container spacing={40} className={classes.cardGrid}>

@@ -4,13 +4,26 @@ import MicBlend from './images/MicBlend.png';
 import Emotions from './images/Emotions.png';
 import Customizing from './images/Customizing.png';
 import MultiLingual from './images/MultiLingual.png';
+import APISummary from '@material-ui/icons/Person';
 
 const sections = [
-    'API 개요',
-    '다운로드',
-    '가격정책',
-    '지원 및 문의',
-    ];
+    {
+        title: 'API 개요',
+        icon: APISummary,
+    },
+    {
+        title: '다운로드',
+        icon: APISummary,
+    },
+    {
+        title: '가격정책',
+        icon: APISummary,
+    },
+    {
+        title: '지원 및 문의',
+        icon: APISummary,
+    },
+    ]
   
 const prices = [
     {
