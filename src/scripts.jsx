@@ -10,18 +10,22 @@ const sections = [
     {
         title: 'API 개요',
         icon: APISummary,
+        div: 'this.featureContainer',
     },
     {
         title: '다운로드',
         icon: APISummary,
+        div: 'this.featureContainer',
     },
     {
         title: '가격정책',
         icon: APISummary,
+        div: 'this.cardGrid',
     },
     {
         title: '지원 및 문의',
         icon: APISummary,
+        div: 'this.cardGrid',
     },
     ]
   

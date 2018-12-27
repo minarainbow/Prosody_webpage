@@ -60,10 +60,10 @@ class Tablet extends Component {
         <main>
             <div className={classes.container} >
               <img src={MicBlend} alt="MicBlend" width="100%"/>
-              <div className={classes.APITitle} >
+              <div className={classes.APITitleTablet} >
               맞춤형 목소리 합성 API
               </div>
-              <div className={classes.APIDetail} >
+              <div className={classes.APIDetailTablet} >
               사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
               IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
               풍부한 감정을 가지고 말하는 인공지능을 만나보세요
@@ -79,7 +79,7 @@ class Tablet extends Component {
                 <div style={{fontSize: "1.8vw", fontWeight: "bold"}}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "1.5vw"}}>
+                  <div style={{fontSize: "1.5vw", lineHeight: "200%"}}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
                   </div>
                 </div>

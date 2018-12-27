@@ -17,8 +17,26 @@ import Markdown from './Markdown';
 import logo from './images/logo.png';
 import MicBlend from './images/MicBlend.png';
 import {sections, APIfeatures, prices} from './scripts';
+import scrollToComponent from 'react-scroll-to-component';
 
 class Desktop extends Component {
+
+  scrollToDiv = (title) => {
+    switch(title){
+      case 'API 개요':
+        scrollToComponent(this.featureContainer);
+        break;
+      case '다운로드':
+        scrollToComponent(this.featureContainer);
+        break;
+      case '가격정책':
+        scrollToComponent(this.cardGrid);
+        break;
+      case '지원 및 문의':
+        scrollToComponent(this.cardGrid);
+        break;
+    }
+  }
 
   render() {
     const {classes} = this.props;
@@ -43,7 +61,8 @@ class Desktop extends Component {
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
           {sections.map(section => (
-            <Button color="inherit" style={{fontSize: '20px', width: '30%'}} key={section}>
+            <Button color="inherit" style={{fontSize: '20px', width: '30%'}} key={section}
+              onClick={()=>this.scrollToDiv(section.title)}>
               {section.title}
             </Button>
           ))}
@@ -63,14 +82,14 @@ class Desktop extends Component {
             <div
               className={classes.keySentence}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
-            <div className={classes.featureContainer}>
+            <div className={classes.featureContainer}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
                 <img src={feature.image} width="90%" />
                   <div style={{fontSize: "28px", fontWeight: "bold"}}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "21px"}}>
+                  <div style={{fontSize: "21px", lineHeight: "200%"}}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
                   </div>
                 </div>
@@ -80,7 +99,7 @@ class Desktop extends Component {
               className={classes.keySentence}
               align="center">가격 정책<br />
             </Typography>
-            <Grid container  className={classes.cardGrid}>
+            <Grid container  className={classes.cardGrid} ref={(section) => { this.cardGrid = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={classes.card}>

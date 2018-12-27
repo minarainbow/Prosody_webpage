@@ -10,6 +10,7 @@
     "react-responsive": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-scroll-to-component": "^1.0.2",
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {

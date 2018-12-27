@@ -68,11 +68,7 @@ class Phone extends Component {
             </IconButton>
             <IconButton
               aria-label="Open drawer" 
-              onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.menuButtonHidden,
-              )} >
+              onClick={this.handleDrawerOpen}>
               <MenuIcon className={classes.defaultIcon}/>
             </IconButton>
           </Toolbar>
@@ -107,10 +103,10 @@ class Phone extends Component {
               {APIfeatures.map(feature => (
                 <div>
                 <img src={feature.image} width="60%"/>
-                <div style={{fontSize: "21px", fontWeight: "bold"}}>
+                <div style={{fontSize: "22px", fontWeight: "bold"}}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "15px"}}>
+                  <div style={{fontSize: "16px"}}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br /><br /><br />
                   </div>
                 </div>
