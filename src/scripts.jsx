@@ -6,26 +6,23 @@ import Customizing from './images/Customizing.png';
 import MultiLingual from './images/MultiLingual.png';
 import APISummary from '@material-ui/icons/Person';
 
+
 const sections = [
     {
         title: 'API 개요',
         icon: APISummary,
-        div: 'this.featureContainer',
     },
     {
         title: '다운로드',
         icon: APISummary,
-        div: 'this.featureContainer',
     },
     {
         title: '가격정책',
         icon: APISummary,
-        div: 'this.cardGrid',
     },
     {
         title: '지원 및 문의',
         icon: APISummary,
-        div: 'this.cardGrid',
     },
     ]
   
@@ -33,12 +30,12 @@ const prices = [
     {
         title: 'Basic',
         price: '99.99 won',
-        description: '여기에 설명이 들어갑니다 어쩌구 저쩌구',
+        description: '여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구',
     },
     {
         title: 'Pro',
         price: '3,599,998 won',
-        description: '여기에 설명이 들어갑니다 어쩌구 저쩌구',
+        description: '여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구 여기에 설명이 들어갑니다 어쩌구 저쩌구 ',
     }
 ]
   

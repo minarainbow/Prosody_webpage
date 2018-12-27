@@ -113,11 +113,18 @@ const styles = theme => ({
       textAlign: 'center',
       justifyContent: 'space-between',
     },
-    mainGrid: {
-      marginTop: theme.spacing.unit * 3,
+    priceContainer: {
+      textAlign: 'center',
+      marginBottom: '20%',
     },
     card: {
+      marginLeft: '10%',
+      marginRight: '10%',
       display: 'flex',
+      width: '80%',
+      border: `2px solid ${theme.palette.grey[200]}`,
+      borderRadius: '10px',
+      boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
     },
     cardDetails: {
       flex: 1,
@@ -125,9 +132,6 @@ const styles = theme => ({
     cardMedia: {
       width: 'auto',
     },
-    // markdown: {
-    //   padding: `${theme.spacing.unit * 3}px 0`,
-    // },
     sidebarAboutBox: {
       padding: theme.spacing.unit * 2,
       backgroundColor: theme.palette.grey[200],

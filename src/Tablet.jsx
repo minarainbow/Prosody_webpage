@@ -25,8 +25,26 @@ import Responsive from 'react-responsive';
 import MediaQuery from 'react-responsive';
 import DesktopBreakpoint from './responsive_utilities/desktop_breakpoint';
 import {sections, APIfeatures, prices} from './scripts';
+import scrollToComponent from 'react-scroll-to-component';
 
 class Tablet extends Component {
+
+  scrollToDiv = (title) => {
+    switch(title){
+      case 'API 개요':
+        scrollToComponent(this.featureContainer);
+        break;
+      case '다운로드':
+        scrollToComponent(this.featureContainer);
+        break;
+      case '가격정책':
+        scrollToComponent(this.priceContainer);
+        break;
+      case '지원 및 문의':
+        scrollToComponent(this.priceContainer);
+        break;
+    }
+  }
 
   render() {
     const {classes} = this.props;
@@ -52,7 +70,8 @@ class Tablet extends Component {
           <Toolbar variant="dense" className={classes.toolbarMenu} style={{width: '40%'}}>
           {sections.map(section => (
             <Button color="inherit" 
-              style={{fontSize: '18px'}} key={section}>
+              style={{fontSize: '18px'}} key={section}
+              onClick={()=>this.scrollToDiv(section.title)}>
               {section.title}
             </Button>
           ))}
@@ -72,7 +91,7 @@ class Tablet extends Component {
             <div
               className={classes.keySentence}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
-            <div className={classes.featureContainerTablet}>
+            <div className={classes.featureContainerTablet}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
                 <div className={classes.featureTablet}>
                 <img src={feature.image} width="80%"/>
@@ -89,7 +108,7 @@ class Tablet extends Component {
               className={classes.keySentence}
               align="center">가격 정책<br />
             </Typography>
-            <Grid container  className={classes.cardGrid}>
+            <Grid container  className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={classes.card}>

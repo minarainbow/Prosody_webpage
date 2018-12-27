@@ -30,10 +30,10 @@ class Desktop extends Component {
         scrollToComponent(this.featureContainer);
         break;
       case '가격정책':
-        scrollToComponent(this.cardGrid);
+        scrollToComponent(this.priceContainer);
         break;
       case '지원 및 문의':
-        scrollToComponent(this.cardGrid);
+        scrollToComponent(this.priceContainer);
         break;
     }
   }
@@ -99,7 +99,7 @@ class Desktop extends Component {
               className={classes.keySentence}
               align="center">가격 정책<br />
             </Typography>
-            <Grid container  className={classes.cardGrid} ref={(section) => { this.cardGrid = section; }}>
+            <Grid container  className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={classes.card}>

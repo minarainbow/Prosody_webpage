@@ -30,21 +30,36 @@ import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import List from '@material-ui/core/List';
+import scrollToComponent from 'react-scroll-to-component';
 
 class Phone extends Component {
 
   state = {
     open: false,
   };
-
-  
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
-
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
+  scrollToDiv = (title) => {
+    switch(title){
+      case 'API 개요':
+        scrollToComponent(this.featureContainer);
+        break;
+      case '다운로드':
+        scrollToComponent(this.featureContainer);
+        break;
+      case '가격정책':
+        scrollToComponent(this.priceContainer);
+        break;
+      case '지원 및 문의':
+        scrollToComponent(this.priceContainer);
+        break;
+    }
+  }
 
   render() {
     const {classes} = this.props;
@@ -116,7 +131,7 @@ class Phone extends Component {
               className={classes.keySentencePhone}
               align="center">가격 정책<br />
             </Typography>
-            <Grid container spacing={40} className={classes.cardGrid}>
+            <Grid container spacing={40} className={classes.priceContainer}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={classes.card}>
