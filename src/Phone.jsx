@@ -59,7 +59,16 @@ class Phone extends Component {
         scrollToComponent(this.priceContainer);
         break;
     }
-  }
+  };
+
+  getPriceClass = (title, classes) => {
+    switch(title){
+      case 'Basic':
+        return classes.cardBasic;
+      case 'Pro':
+        return classes.cardPro;
+    }
+  };
 
   render() {
     const {classes} = this.props;
@@ -102,8 +111,8 @@ class Phone extends Component {
                 </div>
                 <Divider />
                 {sections.map(section => (
-                  <div style={{display: "inline-block"}}>
-                  <Button color="inherit" style={{fontSize: '18px', width: '100%'}} key={section}>
+                  <div>
+                  <Button color="inherit" style={{fontSize: '18px', width: '100%',  textAlign: "left"}} key={section}>
                     <section.icon color="action" className={classes.defaultIcon}/>
                     <div > {section.title} </div>
                   </Button>
@@ -118,10 +127,10 @@ class Phone extends Component {
               {APIfeatures.map(feature => (
                 <div>
                 <img src={feature.image} width="60%"/>
-                <div style={{fontSize: "22px", fontWeight: "bold"}}>
+                <div className={classes.phoneTitle}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "16px"}}>
+                  <div className={classes.phoneDescription}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br /><br /><br />
                   </div>
                 </div>
@@ -134,18 +143,18 @@ class Phone extends Component {
             <Grid container spacing={40} className={classes.priceContainer}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
-                <Card className={classes.card}>
+                <Card className={this.getPriceClass(price.title, classes)}>
                   <div className={classes.cardDetails}>
                     <CardContent>
-                      <Typography component="h2" variant="h5">
+                      <div className={classes.phoneTitle}>
                         {price.title}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
+                      </div>
+                      <div variant="subtitle1" color="textSecondary">
                         {price.price}
-                      </Typography>
-                      <Typography variant="subtitle1" paragraph>
+                      </div>
+                      <div className={classes.phoneDescription}>
                         {price.description}
-                      </Typography>
+                      </div>
                     </CardContent>
                   </div>
                 </Card>

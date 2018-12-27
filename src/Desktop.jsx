@@ -36,7 +36,16 @@ class Desktop extends Component {
         scrollToComponent(this.priceContainer);
         break;
     }
-  }
+  };
+
+  getPriceClass = (title, classes) => {
+    switch(title){
+      case 'Basic':
+        return classes.cardBasic;
+      case 'Pro':
+        return classes.cardPro;
+    }
+  };
 
   render() {
     const {classes} = this.props;
@@ -86,34 +95,34 @@ class Desktop extends Component {
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
                 <img src={feature.image} width="90%" />
-                  <div style={{fontSize: "28px", fontWeight: "bold"}}>
+                  <div className={classes.desktopTitle}>
                     {feature.title}
                   </div><br />
-                  <div style={{fontSize: "21px", lineHeight: "200%"}}>
+                  <div className={classes.desktopDescription}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
                   </div>
                 </div>
               ))}
             </div>
-            <Typography
+            <div
               className={classes.keySentence}
               align="center">가격 정책<br />
-            </Typography>
+            </div>
             <Grid container  className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
-                <Card className={classes.card}>
+                <Card className={this.getPriceClass(price.title, classes)}>
                   <div className={classes.cardDetails}>
                     <CardContent>
-                      <Typography component="h2" variant="h5">
+                      <div className={classes.desktopTitle}>
                         {price.title}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
+                      </div>
+                      <div variant="subtitle1" color="textSecondary">
                         {price.price}
-                      </Typography>
-                      <Typography variant="subtitle1" paragraph>
+                      </div>
+                      <div className={classes.desktopDescription}>
                         {price.description}
-                      </Typography>
+                      </div>
                     </CardContent>
                   </div>
                 </Card>

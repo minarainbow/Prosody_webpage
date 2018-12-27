@@ -117,7 +117,7 @@ const styles = theme => ({
       textAlign: 'center',
       marginBottom: '20%',
     },
-    card: {
+    cardBasic: {
       marginLeft: '10%',
       marginRight: '10%',
       display: 'flex',
@@ -125,6 +125,17 @@ const styles = theme => ({
       border: `2px solid ${theme.palette.grey[200]}`,
       borderRadius: '10px',
       boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
+    },
+    cardPro: {
+      marginLeft: '10%',
+      marginRight: '10%',
+      display: 'flex',
+      width: '80%',
+      border: `2px solid ${theme.palette.grey[200]}`,
+      borderRadius: '10px',
+      boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
+      background: 'linear-gradient(to right, #264C56 , #393253)',
+      color: 'white',
     },
     cardDetails: {
       flex: 1,
@@ -144,8 +155,6 @@ const styles = theme => ({
       marginTop: theme.spacing.unit * 8,
       padding: `${theme.spacing.unit * 6}px 0`,
     },
-
-
     menuButton: {
       marginLeft: 12,
       marginRight: 36,
@@ -153,8 +162,28 @@ const styles = theme => ({
     menuButtonHidden: {
       display: 'none',
     },
-    title: {
-      flexGrow: 1,
+    phoneTitle: {
+      fontSize: "22px", 
+      fontWeight: "bold",
+    },
+    phoneDescription: {
+      fontSize: "16px"
+    },
+    tabletTitle: {
+      fontSize: "1.8vw", 
+      fontWeight: "bold",
+    },
+    tabletDescription: {
+      fontSize: "1.5vw", 
+      lineHeight: "200%"
+    },
+    desktopTitle: {
+      fontSize: "28px", 
+      fontWeight: "bold"
+    },
+    desktopDescription: {
+      fontSize: "21px", 
+      lineHeight: "200%"
     },
     drawerPaper: {
       whiteSpace: 'nowrap',
