@@ -16,13 +16,13 @@ const styles = theme => ({
       marginTop: '3%',
       marginLeft: '3%',
       marginRight: '3%',
-      borderBottom: `2px solid ${theme.palette.grey[300]}`,
+      borderBottom: `3px solid ${theme.palette.grey[300]}`,
     },
     toolbarMainPhone: {
       width: 'auto',
       marginTop: '3%',
       marginRight: '3%',
-      borderBottom: `2px solid ${theme.palette.grey[300]}`,
+      borderBottom: `3px solid ${theme.palette.grey[300]}`,
       marginBottom: '3%',
     },
     toolbarTitle: {
@@ -58,9 +58,9 @@ const styles = theme => ({
       display: 'flex',
     },
     featureContainerPhone: {
-      paddingLeft: '13%',
-      paddingRight: '13%',
-      width: '74%',
+      paddingLeft: '10%',
+      paddingRight: '10%',
+      width: '80%',
       textAlign: 'center',
     },
     keySentence: {
@@ -122,7 +122,7 @@ const styles = theme => ({
       marginRight: '10%',
       display: 'flex',
       width: '80%',
-      border: `2px solid ${theme.palette.grey[200]}`,
+      border: `3px solid ${theme.palette.grey[200]}`,
       borderRadius: '10px',
       boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
     },
@@ -131,7 +131,7 @@ const styles = theme => ({
       marginRight: '10%',
       display: 'flex',
       width: '80%',
-      border: `2px solid ${theme.palette.grey[200]}`,
+      border: `3px solid ${theme.palette.grey[200]}`,
       borderRadius: '10px',
       boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
       background: 'linear-gradient(to right, #264C56 , #393253)',
@@ -167,7 +167,7 @@ const styles = theme => ({
       fontWeight: "bold",
     },
     phoneDescription: {
-      fontSize: "16px"
+      fontSize: "16px",
     },
     tabletTitle: {
       fontSize: "1.8vw", 
@@ -204,7 +204,19 @@ const styles = theme => ({
         width: theme.spacing.unit * 9,
       },
     },
-
+    featureDivider: {
+      width: "80%",
+      paddingRight: "10%",
+      borderRight: `3px solid ${theme.palette.grey[300]}`,
+    },
+    featureDividerPhone: {
+      paddingTop: "2.4vw",
+      paddingBottom: "3.2vw",
+      marginLeft: "25%",
+      marginRight:"50%", 
+      width: "50%", 
+      borderBottom: `3px solid ${theme.palette.grey[300]}`,
+    },
     toolbarIcon: {
       display: 'flex',
       alignItems: 'center',
@@ -212,6 +224,7 @@ const styles = theme => ({
       padding: '0 8px',
       ...theme.mixins.toolbar,
     },
+
     
   });
 

@@ -47,6 +47,16 @@ class Desktop extends Component {
     }
   };
 
+  divideFeatures = (title, classes) => {
+    switch(title){
+      case '감정조절':
+      case '커스터마이징':
+        return classes.featureDivider;
+      case '다국어 지원':
+        return;
+    }
+  };
+
   render() {
     const {classes} = this.props;
 
@@ -94,12 +104,13 @@ class Desktop extends Component {
             <div className={classes.featureContainer}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
                 <div className={classes.feature}>
-                <img src={feature.image} width="90%" />
+                <img src={feature.image} className={this.divideFeatures(feature.title, classes)} />
                   <div className={classes.desktopTitle}>
                     {feature.title}
                   </div><br />
                   <div className={classes.desktopDescription}>
-                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
+                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
+                    <div className={this.divideFeatures(feature.title, classes)}></div>
                   </div>
                 </div>
               ))}

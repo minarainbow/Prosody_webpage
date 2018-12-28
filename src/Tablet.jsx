@@ -55,6 +55,16 @@ class Tablet extends Component {
     }
   };
 
+  divideFeatures = (title, classes) => {
+    switch(title){
+      case '감정조절':
+      case '커스터마이징':
+        return classes.featureDivider;
+      case '다국어 지원':
+        return;
+    }
+  };
+
   render() {
     const {classes} = this.props;
 
@@ -103,7 +113,7 @@ class Tablet extends Component {
             <div className={classes.featureContainerTablet}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
                 <div className={classes.featureTablet}>
-                <img src={feature.image} width="80%"/>
+                <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)}/>
                 <div className={classes.tabletTitle}>
                     {feature.title}
                   </div><br />

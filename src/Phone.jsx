@@ -31,6 +31,7 @@ import classNames from 'classnames';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import List from '@material-ui/core/List';
 import scrollToComponent from 'react-scroll-to-component';
+import grey from '@material-ui/core/colors/grey';
 
 class Phone extends Component {
 
@@ -45,12 +46,13 @@ class Phone extends Component {
   };
 
   scrollToDiv = (title) => {
+    this.handleDrawerClose();
     switch(title){
       case 'API 개요':
-        scrollToComponent(this.featureContainer);
+        scrollToComponent(this.featureContainerPhone);
         break;
       case '다운로드':
-        scrollToComponent(this.featureContainer);
+        scrollToComponent(this.featureContainerPhone);
         break;
       case '가격정책':
         scrollToComponent(this.priceContainer);
@@ -69,6 +71,16 @@ class Phone extends Component {
         return classes.cardPro;
     }
   };
+
+  divideFeatures = (title, classes) => {
+    switch(title){
+      case '감정조절':
+      case '커스터마이징':
+        return classes.featureDividerPhone;
+      case '다국어 지원':
+        return;
+    }
+  }
 
   render() {
     const {classes} = this.props;
@@ -112,7 +124,8 @@ class Phone extends Component {
                 <Divider />
                 {sections.map(section => (
                   <div>
-                  <Button color="inherit" style={{fontSize: '18px', width: '100%',  textAlign: "left"}} key={section}>
+                  <Button color="inherit" style={{fontSize: '18px', width: '100%',  textAlign: "left"}} key={section}
+                    onClick={()=>this.scrollToDiv(section.title)}>
                     <section.icon color="action" className={classes.defaultIcon}/>
                     <div > {section.title} </div>
                   </Button>
@@ -123,7 +136,7 @@ class Phone extends Component {
             <div
               className={classes.keySentencePhone}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
-            <div className={classes.featureContainerPhone}>
+            <div className={classes.featureContainerPhone} ref={(section) => { this.featureContainerPhone = section; }}>
               {APIfeatures.map(feature => (
                 <div>
                 <img src={feature.image} width="60%"/>
@@ -131,16 +144,18 @@ class Phone extends Component {
                     {feature.title}
                   </div><br />
                   <div className={classes.phoneDescription}>
-                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br /><br /><br />
+                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
+                    <div className={this.divideFeatures(feature.title, classes)}></div>
                   </div>
                 </div>
+                
               ))}
             </div>
             <Typography
               className={classes.keySentencePhone}
               align="center">가격 정책<br />
             </Typography>
-            <Grid container spacing={40} className={classes.priceContainer}>
+            <Grid container spacing={40} className={classes.priceContainer}  ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={this.getPriceClass(price.title, classes)}>
