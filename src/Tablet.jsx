@@ -29,6 +29,21 @@ import scrollToComponent from 'react-scroll-to-component';
 
 class Tablet extends Component {
 
+  state = {
+    zoomIn: false,
+  };
+
+  getImageClass = (classes) =>{
+    if(this.state.zoomIn){
+      return classes.zoomInImage;
+    }
+    return classes.defaultImage;
+  };
+
+  onMouseEnterHandler = (event, bool) => {
+    this.setState({ zoomIn: bool});
+  };
+
   scrollToDiv = (title) => {
     switch(title){
       case 'API 개요':
@@ -96,8 +111,10 @@ class Tablet extends Component {
           ))}
         </Toolbar>
         <main>
-            <div className={classes.container} >
-              <img src={MicBlend} alt="MicBlend" width="100%"/>
+            <div className={classes.container} 
+            onMouseEnter={(event)=>this.onMouseEnterHandler(event, true)}
+            onMouseLeave={(event) => this.onMouseEnterHandler(event, false)}>
+              <img src={MicBlend} alt="MicBlend" width="100%"  className={this.getImageClass(classes)} />
               <div className={classes.APITitleTablet} >
               맞춤형 목소리 합성 API
               </div>

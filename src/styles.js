@@ -1,4 +1,3 @@
-
 const styles = theme => ({
   
     layout: {
@@ -26,6 +25,7 @@ const styles = theme => ({
       marginBottom: '3%',
     },
     toolbarTitle: {
+      width: '10%',
       marginLeft: theme.spacing.unit,
       flex: 1,
       color: theme.palette.grey[600],
@@ -44,11 +44,22 @@ const styles = theme => ({
     },
     container: {
       width: '100%',
-      marginBottom: "8%",
+      height: '31vw',
+      overflow: 'hidden',
+    },
+    defaultImage: {
+      width: "100%", 
+    },
+    zoomInImage: {
+      width: "110%",
+      transition: theme.transitions.create('all', {
+        easing: theme.transitions.easing.sharp,
+        duration: 3*theme.transitions.duration.leavingScreen,
+      }),
     },
     featureContainer: {
       marginLeft: '7%',
-      marginRight: '7%',
+      marginRight: '8%',
       marginBottom: '10%',
       width: '86%',
       display: 'flex',
@@ -207,8 +218,7 @@ const styles = theme => ({
       },
     },
     featureDivider: {
-      width: "80%",
-      paddingRight: "10%",
+      paddingRight: '12%',
       borderRight: `3px solid ${theme.palette.grey[300]}`,
     },
     featureDividerPhone: {

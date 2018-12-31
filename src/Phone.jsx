@@ -37,7 +37,20 @@ class Phone extends Component {
 
   state = {
     open: false,
+    zoomIn: false,
   };
+
+  getImageClass = (classes) =>{
+    if(this.state.zoomIn){
+      return classes.zoomInImage;
+    }
+    return classes.defaultImage;
+  };
+
+  onMouseEnterHandler = (event, bool) => {
+    this.setState({ zoomIn: bool});
+  };
+
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -110,7 +123,11 @@ class Phone extends Component {
           </Toolbar>
         <main>
           <div  style={{display: "block"}}>
-              <img src={MicBlend} alt="MicBlend" width="100%"/>
+            <div className={classes.container}  
+                onMouseEnter={(event)=>this.onMouseEnterHandler(event, true)}
+                onMouseLeave={(event) => this.onMouseEnterHandler(event, false)} >
+                  <img src={MicBlend} alt="MicBlend" className={this.getImageClass(classes)}/>
+            </div>
               <Drawer
                 classes={{
                   paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
