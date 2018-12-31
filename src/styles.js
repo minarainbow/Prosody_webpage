@@ -40,6 +40,7 @@ const styles = theme => ({
     },
     defaultIcon: {
       fontSize: '38px',
+      marginRight: '8px',
     },
     container: {
       width: '100%',
@@ -186,8 +187,9 @@ const styles = theme => ({
       lineHeight: "200%"
     },
     drawerPaper: {
+      alignItems: 'left',
       whiteSpace: 'nowrap',
-      width: 220,
+      width: 200,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,

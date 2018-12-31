@@ -4,25 +4,28 @@ import MicBlend from './images/MicBlend.png';
 import Emotions from './images/Emotions.png';
 import Customizing from './images/Customizing.png';
 import MultiLingual from './images/MultiLingual.png';
-import APISummary from '@material-ui/icons/Person';
+import CashIcon from '@material-ui/icons/MonetizationOn';
+import DownloadIcon from '@material-ui/icons/Archive';
+import QuestionIcon from '@material-ui/icons/ContactSupport';
+import MusicIcon from '@material-ui/icons/LibraryMusic';
 
 
 const sections = [
     {
         title: 'API 개요',
-        icon: APISummary,
+        icon: MusicIcon,
     },
     {
         title: '다운로드',
-        icon: APISummary,
+        icon: DownloadIcon,
     },
     {
         title: '가격정책',
-        icon: APISummary,
+        icon: CashIcon,
     },
     {
         title: '지원 및 문의',
-        icon: APISummary,
+        icon: QuestionIcon,
     },
     ]
   

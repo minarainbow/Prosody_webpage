@@ -117,7 +117,7 @@ class Desktop extends Component {
             </div>
             <div
               className={classes.keySentence}
-              align="center">가격 정책<br />
+              align="center" >가격 정책<br />
             </div>
             <Grid container  className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (

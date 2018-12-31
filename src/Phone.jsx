@@ -87,7 +87,7 @@ class Phone extends Component {
 
     return (
       <React.Fragment>
-        <div className={classes.layout}>
+        <div>
           <Toolbar className={classes.toolbarMainPhone}>
             <img src={logo} className="logo" alt="logo" height="40" width="40" />
             <Typography
@@ -111,23 +111,25 @@ class Phone extends Component {
         <main>
           <div  style={{display: "block"}}>
               <img src={MicBlend} alt="MicBlend" width="100%"/>
-              <Drawer 
+              <Drawer
                 classes={{
                   paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
                 }}
-                open={this.state.open} anchor="right">
-                <div className={classes.toolbarIcon}>
+                open={this.state.open} anchor="right" >
+                <div>
                   <IconButton onClick={this.handleDrawerClose}>
                     <ChevronRightIcon />
                   </IconButton>
                 </div>
                 <Divider />
                 {sections.map(section => (
-                  <div>
-                  <Button color="inherit" style={{fontSize: '18px', width: '100%',  textAlign: "left"}} key={section}
+                  <div >
+                  <Button color="inherit" style={{fontSize: '18px',  width: '100%', paddingTop: '15%', paddingBottom: '15%'}} key={section}
                     onClick={()=>this.scrollToDiv(section.title)}>
-                    <section.icon color="action" className={classes.defaultIcon}/>
-                    <div > {section.title} </div>
+                    <section.icon color="action" style={{position: 'absolute', left: '15px', fontSize: '30px', paddingRight: '10px'}}/>
+                    <div style={{position: 'absolute', left: '60px'}}> 
+                      {section.title} 
+                    </div>
                   </Button>
                   </div>
                 ))}
@@ -151,10 +153,10 @@ class Phone extends Component {
                 
               ))}
             </div>
-            <Typography
+            <div
               className={classes.keySentencePhone}
               align="center">가격 정책<br />
-            </Typography>
+            </div>
             <Grid container spacing={40} className={classes.priceContainer}  ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>

@@ -70,7 +70,7 @@ class Tablet extends Component {
 
     return (
       <React.Fragment>
-        <div className={classes.layout}>
+        <div >
           <Toolbar className={classes.toolbarMain}>
             <img src={logo} className="logo" alt="logo" height="50" width="50" />
             <Typography
