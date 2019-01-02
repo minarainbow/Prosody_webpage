@@ -36,18 +36,29 @@ class Desktop extends Component {
 
   renderRedirect = () =>{
     if(this.state.redirect){
-      return <Redirect to='/target'/>
+      return <Redirect to='/'/>
     }
   }
 
-  getImageClass = (classes) =>{
+  containerMouseState = (classes) =>{
     if(this.state.zoomIn){
       return classes.zoomInImage;
     }
     return classes.defaultImage;
   };
 
-  onMouseEnterHandler = (event, bool) => {
+  featureMouseState = (classes) =>{
+    if(this.state.zoomIn){
+      return classes.zoomInImage;
+    }
+    return classes.defaultImage;
+  };
+
+  containerMouseHandler = (event, bool) => {
+    this.setState({ zoomIn: bool});
+  };
+
+  featureMouseHandler = (event, bool) => {
     this.setState({ zoomIn: bool});
   };
 
@@ -92,6 +103,7 @@ class Desktop extends Component {
 
     return (
       <React.Fragment>
+        
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
           <Button color="inherit" className={classes.toolbarTitle}>
@@ -114,9 +126,9 @@ class Desktop extends Component {
         </Toolbar>
         <main>
             <div className={classes.container}  
-              onMouseEnter={(event)=>this.onMouseEnterHandler(event, true)}
-              onMouseLeave={(event) => this.onMouseEnterHandler(event, false)} >
-                <img src={MicBlend} alt="MicBlend" className={this.getImageClass(classes)}/>
+              onMouseEnter={(event)=>this.containerMouseHandler(event, true)}
+              onMouseLeave={(event) => this.containerMouseHandler(event, false)} >
+                <img src={MicBlend} alt="MicBlend" className={this.containerMouseState(classes)}/>
             
               <div className={classes.APITitle} >
               맞춤형 목소리 합성 API
@@ -132,8 +144,10 @@ class Desktop extends Component {
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
             <div className={classes.featureContainer}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
-                <div className={classes.feature}>
-                <img src={feature.image} className={this.divideFeatures(feature.title, classes)} />
+                <div className={classes.feature} 
+                onMouseEnter={(event)=>this.featureMouseHandler(event, true)}
+                onMouseLeave={(event) => this.featureMouseHandler(event, false)} >
+                  <img src={feature.image} className={this.divideFeatures(feature.title, classes)}  className={this.featureMouseState(classes)} />
                   <div className={classes.desktopTitle}>
                     {feature.title}
                   </div><br />

@@ -54,14 +54,14 @@ class Phone extends Component {
     }
   };
 
-  getImageClass = (classes) =>{
+  containerMouseState = (classes) =>{
     if(this.state.zoomIn){
       return classes.zoomInImage;
     }
     return classes.defaultImage;
   };
 
-  onMouseEnterHandler = (event, bool) => {
+  containerMouseHandler = (event, bool) => {
     this.setState({ zoomIn: bool});
   };
 
@@ -137,9 +137,9 @@ class Phone extends Component {
         <main>
           <div  style={{display: "block"}}>
             <div className={classes.container}  
-                onMouseEnter={(event)=>this.onMouseEnterHandler(event, true)}
-                onMouseLeave={(event) => this.onMouseEnterHandler(event, false)} >
-                  <img src={MicBlend} alt="MicBlend" className={this.getImageClass(classes)}/>
+                onMouseEnter={(event)=>this.containerMouseHandler(event, true)}
+                onMouseLeave={(event) => this.containerMouseHandler(event, false)} >
+                  <img src={MicBlend} alt="MicBlend" className={this.containerMouseState(classes)}/>
             </div>
               <Drawer
                 classes={{

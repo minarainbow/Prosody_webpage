@@ -21,12 +21,38 @@ import TabletBreakpoint from './responsive_utilities/tablet_breakpoint';
 import PhoneBreakpoint from './responsive_utilities/phone_breakpoint';
 import Desktop from './Desktop.jsx';
 import Tablet from './Tablet.jsx';
-import Phone from './Phone.jsx'
+import Phone from './Phone.jsx';
+import ReactLoading from 'react-loading';
+import LoadingMessage from './LoadingMessage';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.enableMessage = this.enableMessage.bind(this);
 
+    this.state = {
+    displayMessage: false,
+    };
+
+    this.timer = setTimeout(this.enableMessage, 2000);
+  }
+
+  componentWillUnmount() {
+      clearTimeout(this.timer);
+  }
+
+  enableMessage() {
+      this.setState({displayMessage: true});
+  }
+
+  
   render() {
+    const {displayMessage} = this.state;
+
+    if(!displayMessage){
+      return <div>Loading...</div>;
+    }
     return (
       <React.Fragment>
         <DesktopBreakpoint>
