@@ -87,18 +87,14 @@ class Tablet extends Component {
       <React.Fragment>
         <div >
           <Toolbar className={classes.toolbarMain}>
-            <img src={logo} className="logo" alt="logo" height="50" width="50" />
-            <Typography
-              component="h2"
-              variant="h4"
-              color="inherit"
-              align="left"
-              noWrap
-              className={classes.toolbarTitle}>
+          <Button color="inherit" className={classes.toolbarTitleTablet}>
+              <img src = {logo} className = {classes.mainLogo}/>
+              <div className={classes.logoTitle} >
               Tablet
-            </Typography>
+              </div>
+            </Button>
             <IconButton color="action">
-              <PersonIcon  className={classes.defaultIcon} />
+              <PersonIcon  className={classes.mypageIcon} />
             </IconButton>
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu} style={{width: '40%'}}>
@@ -153,7 +149,7 @@ class Tablet extends Component {
                       <div className={classes.tabletTitle}>
                         {price.title}
                       </div>
-                      <div variant="subtitle1" color="textSecondary">
+                      <div className={classes.price}>
                         {price.price}
                       </div>
                       <div className={classes.tabletDescription}>

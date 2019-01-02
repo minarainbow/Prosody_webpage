@@ -32,12 +32,26 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import List from '@material-ui/core/List';
 import scrollToComponent from 'react-scroll-to-component';
 import grey from '@material-ui/core/colors/grey';
+import { Redirect } from 'react-router-dom';
 
 class Phone extends Component {
 
   state = {
     open: false,
     zoomIn: false,
+    redirect: false,
+  };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='loclahost:3000' />
+    }
   };
 
   getImageClass = (classes) =>{
@@ -97,28 +111,27 @@ class Phone extends Component {
 
   render() {
     const {classes} = this.props;
-
+    if(this.state.redirect){
+      return <Redirect to='/home'  />
+   }
     return (
       <React.Fragment>
         <div>
           <Toolbar className={classes.toolbarMainPhone}>
-            <img src={logo} className="logo" alt="logo" height="40" width="40" />
-            <Typography
-              component="h2"
-              variant="h5"
-              color="inherit"
-              align="left"
-              noWrap
-              className={classes.toolbarTitle}>
+          {this.renderRedirect()}
+          <Button color="inherit" className={classes.toolbarTitlePhone}  onClick={this.setRedirect}>
+              <img src = {logo} className = {classes.mainLogoPhone}/>
+              <div className={classes.logoTitlePhone} >
               Phone
-            </Typography>
+              </div>
+            </Button>
             <IconButton color="action">
-              <PersonIcon  className={classes.defaultIcon} />
+              <PersonIcon  className={classes.mypageIcon} />
             </IconButton>
             <IconButton
               aria-label="Open drawer" 
               onClick={this.handleDrawerOpen}>
-              <MenuIcon className={classes.defaultIcon}/>
+              <MenuIcon className={classes.mypageIcon}/>
             </IconButton>
           </Toolbar>
         <main>
@@ -174,7 +187,7 @@ class Phone extends Component {
               className={classes.keySentencePhone}
               align="center">가격 정책<br />
             </div>
-            <Grid container spacing={40} className={classes.priceContainer}  ref={(section) => { this.priceContainer = section; }}>
+            <Grid container className={classes.priceContainer}  ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
               <Grid item key={price.title} xs={12} md={6}>
                 <Card className={this.getPriceClass(price.title, classes)}>
@@ -183,7 +196,7 @@ class Phone extends Component {
                       <div className={classes.phoneTitle}>
                         {price.title}
                       </div>
-                      <div variant="subtitle1" color="textSecondary">
+                      <div className={classes.pricePhone}>
                         {price.price}
                       </div>
                       <div className={classes.phoneDescription}>

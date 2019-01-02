@@ -19,12 +19,26 @@ import MicBlend from './images/MicBlend.png';
 import {sections, APIfeatures, prices} from './scripts';
 import scrollToComponent from 'react-scroll-to-component';
 import classNames from 'classnames';
+import {Redirect} from 'react-router-dom';
 
 class Desktop extends Component {
 
   state = {
     zoomIn: false,
+    redirect: false,
   };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+
+  renderRedirect = () =>{
+    if(this.state.redirect){
+      return <Redirect to='/target'/>
+    }
+  }
 
   getImageClass = (classes) =>{
     if(this.state.zoomIn){
@@ -80,18 +94,14 @@ class Desktop extends Component {
       <React.Fragment>
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
-            <img src={logo} className="logo" alt="logo" height="50" width="50" />
-            <Typography
-              component="h2"
-              variant="h4"
-              color="inherit"
-              align="left"
-              noWrap
-              className={classes.toolbarTitle}>
+          <Button color="inherit" className={classes.toolbarTitle}>
+              <img src = {logo} className = {classes.mainLogo}/>
+              <div className={classes.logoTitle} >
               Desktop
-            </Typography>
+              </div>
+            </Button>
             <IconButton color="action">
-              <PersonIcon  className={classes.defaultIcon} />
+              <PersonIcon  className={classes.mypageIcon} />
             </IconButton>
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
@@ -147,7 +157,7 @@ class Desktop extends Component {
                       <div className={classes.desktopTitle}>
                         {price.title}
                       </div>
-                      <div variant="subtitle1" color="textSecondary">
+                      <div className={classes.price}>
                         {price.price}
                       </div>
                       <div className={classes.desktopDescription}>
