@@ -269,6 +269,23 @@ const styles = theme => ({
     width: "50%", 
     borderBottom: `3px solid ${theme.palette.grey[300]}`,
   },
+  loadingPage: {
+    color: '#fff',
+    fontSize: "30px",
+    width: '100%',
+    height: '100vh',
+    background: 'linear-gradient(to right, #58C2DF  , #393253)',
+  },
+  loadingAnimation: {
+    position: 'relative',
+    top: '25%',
+    left: '47%',
+  },
+  loadingTitle: {
+    paddingTop: '100px',
+    textAlign: 'center',
+    color: "#fff",
+  },
 
   
 });

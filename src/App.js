@@ -35,7 +35,7 @@ class App extends Component {
     displayMessage: false,
     };
 
-    this.timer = setTimeout(this.enableMessage, 2000);
+    this.timer = setTimeout(this.enableMessage, 1500);
   }
 
   componentWillUnmount() {
@@ -51,7 +51,7 @@ class App extends Component {
     const {displayMessage} = this.state;
 
     if(!displayMessage){
-      return <div>Loading...</div>;
+      return <LoadingMessage/>;
     }
     return (
       <React.Fragment>
