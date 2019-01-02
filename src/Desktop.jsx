@@ -24,7 +24,8 @@ import {Redirect} from 'react-router-dom';
 class Desktop extends Component {
 
   state = {
-    zoomIn: false,
+    containerZoom: false,
+    featureZoom: {title: '', state: false},
     redirect: false,
   };
 
@@ -41,25 +42,27 @@ class Desktop extends Component {
   }
 
   containerMouseState = (classes) =>{
-    if(this.state.zoomIn){
-      return classes.zoomInImage;
+    if(this.state.containerZoom){
+      return classes.containerZoomImage;
     }
     return classes.defaultImage;
   };
 
-  featureMouseState = (classes) =>{
-    if(this.state.zoomIn){
-      return classes.zoomInImage;
+  featureMouseState = (classes, title) =>{
+    
+    if(this.state.featureZoom.state && title==this.state.featureZoom.title){
+      return classes.featureZoomImage;
     }
-    return classes.defaultImage;
+    if(!this.state.featureZoom.state)
+      return this.divideFeatures(title, classes);
   };
 
   containerMouseHandler = (event, bool) => {
-    this.setState({ zoomIn: bool});
+    this.setState({ containerZoom: bool});
   };
 
-  featureMouseHandler = (event, bool) => {
-    this.setState({ zoomIn: bool});
+  featureMouseHandler = (event, bool, title) => {
+    this.setState({ featureZoom: {title: title, state: bool}});
   };
 
   scrollToDiv = (title) => {
@@ -145,15 +148,14 @@ class Desktop extends Component {
             <div className={classes.featureContainer}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
                 <div className={classes.feature} 
-                onMouseEnter={(event)=>this.featureMouseHandler(event, true)}
-                onMouseLeave={(event) => this.featureMouseHandler(event, false)} >
-                  <img src={feature.image} className={this.divideFeatures(feature.title, classes)}  className={this.featureMouseState(classes)} />
+                onMouseEnter={(event)=>this.featureMouseHandler(event, true, feature.title)}
+                onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)} >
+                  <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)}  className={this.featureMouseState(classes, feature.title)} />
                   <div className={classes.desktopTitle}>
                     {feature.title}
                   </div><br />
                   <div className={classes.desktopDescription}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
-                    <div className={this.divideFeatures(feature.title, classes)}></div>
                   </div>
                 </div>
               ))}

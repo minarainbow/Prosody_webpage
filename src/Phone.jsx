@@ -38,7 +38,7 @@ class Phone extends Component {
 
   state = {
     open: false,
-    zoomIn: false,
+    containerZoom: false,
     redirect: false,
   };
 
@@ -55,14 +55,14 @@ class Phone extends Component {
   };
 
   containerMouseState = (classes) =>{
-    if(this.state.zoomIn){
-      return classes.zoomInImage;
+    if(this.state.containerZoom){
+      return classes.containerZoomImage;
     }
     return classes.defaultImage;
   };
 
   containerMouseHandler = (event, bool) => {
-    this.setState({ zoomIn: bool});
+    this.setState({ containerZoom: bool});
   };
 
   handleDrawerOpen = () => {

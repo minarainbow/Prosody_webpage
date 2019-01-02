@@ -26,22 +26,50 @@ import MediaQuery from 'react-responsive';
 import DesktopBreakpoint from './responsive_utilities/desktop_breakpoint';
 import {sections, APIfeatures, prices} from './scripts';
 import scrollToComponent from 'react-scroll-to-component';
+import {Redirect} from 'react-router-dom';
 
 class Tablet extends Component {
 
   state = {
-    zoomIn: false,
+    containerZoom: false,
+    featureZoom: {title: '', state: false},
+    redirect: false,
   };
 
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+
+  renderRedirect = () =>{
+    if(this.state.redirect){
+      return <Redirect to='/'/>
+    }
+  }
+
   containerMouseState = (classes) =>{
-    if(this.state.zoomIn){
-      return classes.zoomInImage;
+    if(this.state.containerZoom){
+      return classes.containerZoomImage;
     }
     return classes.defaultImage;
   };
 
+  featureMouseState = (classes, title) =>{
+    
+    if(this.state.featureZoom.state && title==this.state.featureZoom.title){
+      return classes.featureZoomImage;
+    }
+    if(!this.state.featureZoom.state)
+      return this.divideFeatures(title, classes);
+  };
+
   containerMouseHandler = (event, bool) => {
-    this.setState({ zoomIn: bool});
+    this.setState({ containerZoom: bool});
+  };
+
+  featureMouseHandler = (event, bool, title) => {
+    this.setState({ featureZoom: {title: title, state: bool}});
   };
 
   scrollToDiv = (title) => {
@@ -125,8 +153,10 @@ class Tablet extends Component {
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
             <div className={classes.featureContainerTablet}  ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
-                <div className={classes.featureTablet}>
-                <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)}/>
+                <div className={classes.featureTablet}
+                  onMouseEnter={(event)=>this.featureMouseHandler(event, true, feature.title)}
+                  onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)}>
+                <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)}  className={this.featureMouseState(classes, feature.title)} />
                 <div className={classes.tabletTitle}>
                     {feature.title}
                   </div><br />

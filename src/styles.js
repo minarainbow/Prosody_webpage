@@ -80,8 +80,17 @@ const styles = theme => ({
   defaultImage: {
     width: "100%", 
   },
-  zoomInImage: {
+  containerZoomImage: {
     width: "110%",
+    transition: theme.transitions.create('all', {
+      easing: theme.transitions.easing.sharp,
+      duration: 3*theme.transitions.duration.leavingScreen,
+    }),
+  },
+  featureZoomImage: {
+    boxShadow: `0px -8px 10px ${theme.palette.grey[300]}`,
+    borderRadius: '10px',
+    width: "100%",
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
       duration: 3*theme.transitions.duration.leavingScreen,
