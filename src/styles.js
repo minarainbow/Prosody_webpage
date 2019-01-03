@@ -204,6 +204,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: 3*theme.transitions.duration.leavingScreen,
     }),
+    cursor: 'pointer',
   },
   cardZoomOutBasic: {
     paddingLeft: '3%',
@@ -235,6 +236,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: 3*theme.transitions.duration.leavingScreen,
     }),
+    cursor: 'pointer',
   },
   cardZoomOutPro: {
     paddingLeft: '3%',
@@ -254,18 +256,24 @@ const styles = theme => ({
     }),
   },
   cardDetails: {
-    flex: 1,
+    display: 'flex',
   },
   priceTitle: {
     fontStyle: 'italic',
     textShadow: `4px 4px 8px ${theme.palette.grey[600]}`,
     fontSize: '80px',
-  },
+  }, 
   price: {
+    marginLeft: '45%',
+    fontStyle: 'italic',
+    textShadow: `4px 4px 8px ${theme.palette.grey[600]}`,
     fontSize: '50px',
-    marginTop: '30px',
-    marginBottom: '30px',
   },
+  // price: {
+  //   fontSize: '50px',
+  //   marginTop: '30px',
+  //   marginBottom: '30px',
+  // },
   pricePhone: {
     fontSize: '40px',
     marginTop: '20px',

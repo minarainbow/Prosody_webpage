@@ -20,6 +20,8 @@ import {sections, APIfeatures, prices} from './scripts';
 import scrollToComponent from 'react-scroll-to-component';
 import classNames from 'classnames';
 import {Redirect} from 'react-router-dom';
+// import hidePriceDeatil from './HidePriceDetail';
+
 
 class Desktop extends Component {
 
@@ -28,6 +30,7 @@ class Desktop extends Component {
     featureZoom: {title: '', state: false},
     priceZoom: {title: '', state: false},
     redirect: false,
+    priceDetail: false,
   };
 
   setRedirect = () => {
@@ -112,6 +115,34 @@ class Desktop extends Component {
     }
   };
 
+  showPriceDetail(price, classes){
+    if(this.state.priceDetail){
+      return (
+        <div className={classes.cardDetails}>
+          <div className={classes.priceTitle}>
+              {price.title}
+          </div>
+          <div className={classes.price}>
+              {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
+          </div>
+          <div className={classes.desktopDescription}>
+              {price.description}
+          </div>
+        </div>);
+    }
+    else{
+      return (
+        <div className={classes.cardDetails}>
+            <div className={classes.priceTitle}>
+                {price.title}
+            </div>
+            <div className={classes.price}>
+                {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
+            </div>
+        </div>);
+    }
+  };
+
   divideFeatures = (title, classes) => {
     switch(title){
       case '감정조절':
@@ -124,6 +155,7 @@ class Desktop extends Component {
 
   render() {
     const {classes} = this.props;
+    let priceDetail;
 
     return (
       <React.Fragment>
@@ -190,14 +222,16 @@ class Desktop extends Component {
               <Grid item key={price.title} xs={12} md={6}
                 onMouseEnter={(event)=>this.priceMouseHandler(event, true, price.title)}
                 onMouseLeave={(event) => this.priceMouseHandler(event, false, price.title)}>
-                <Card  className={this.priceMouseState(classes, price.title)}>
-                  <div className={classes.cardDetails}>
-                    <CardContent>
+                <Card  className={this.priceMouseState(classes, price.title)} onClick={()=>this.setState({priceDetail: true})}>
+                    {/* {showPriceDetail(price, classes)} */}
+                    <div className={classes.cardDetails}>
                       <div className={classes.priceTitle}>
-                        {price.title}
+                          {price.title}
                       </div>
-                    </CardContent>
-                  </div>
+                      <div className={classes.price}>
+                          {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
+                      </div>
+                      </div>
                 </Card>
               </Grid>
             ))}
