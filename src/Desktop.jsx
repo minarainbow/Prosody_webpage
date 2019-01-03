@@ -20,7 +20,6 @@ import {sections, APIfeatures, prices} from './scripts';
 import scrollToComponent from 'react-scroll-to-component';
 import classNames from 'classnames';
 import {Redirect} from 'react-router-dom';
-// import hidePriceDeatil from './HidePriceDetail';
 
 
 class Desktop extends Component {
@@ -30,7 +29,6 @@ class Desktop extends Component {
     featureZoom: {title: '', state: false},
     priceZoom: {title: '', state: false},
     redirect: false,
-    priceDetail: false,
   };
 
   setRedirect = () => {
@@ -116,19 +114,21 @@ class Desktop extends Component {
   };
 
   showPriceDetail(price, classes){
-    if(this.state.priceDetail){
+    if(this.state.priceZoom.state && price.title == this.state.priceZoom.title){
       return (
-        <div className={classes.cardDetails}>
-          <div className={classes.priceTitle}>
-              {price.title}
+        <div style={{marginBottom: '-30%'}}>
+          <div className={classes.cardDetails}>
+            <div className={classes.priceTitle}  style={{fontSize: '80px'}}>
+                {price.title}
+            </div>
+            <div className={classes.price}>
+                {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
+            </div>
           </div>
-          <div className={classes.price}>
-              {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
-          </div>
-          <div className={classes.desktopDescription}>
+          <div className={classes.desktopDescription} style={{marginTop: '5%', marginLeft: '3%', width: '620px' }}>
               {price.description}
           </div>
-        </div>);
+        </div>)
     }
     else{
       return (
@@ -155,11 +155,9 @@ class Desktop extends Component {
 
   render() {
     const {classes} = this.props;
-    let priceDetail;
 
     return (
-      <React.Fragment>
-        
+      <React.Fragment>        
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
           <Button color="inherit" className={classes.toolbarTitle}>
@@ -222,37 +220,8 @@ class Desktop extends Component {
               <Grid item key={price.title} xs={12} md={6}
                 onMouseEnter={(event)=>this.priceMouseHandler(event, true, price.title)}
                 onMouseLeave={(event) => this.priceMouseHandler(event, false, price.title)}>
-                <Card  className={this.priceMouseState(classes, price.title)} onClick={()=>this.setState({priceDetail: true})}>
-                    {/* {showPriceDetail(price, classes)} */}
-                    <div className={classes.cardDetails}>
-                      <div className={classes.priceTitle}>
-                          {price.title}
-                      </div>
-                      <div className={classes.price}>
-                          {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
-                      </div>
-                      </div>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-          <Grid container  className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
-            {prices.map(price => (
-              <Grid item key={price.title} xs={12} md={6}>
-                <Card className={this.getPriceClass(price.title, classes)}>
-                  <div className={classes.cardDetails}>
-                    <CardContent>
-                      <div className={classes.desktopTitle}>
-                        {price.title}
-                      </div>
-                      <div className={classes.price}>
-                        {price.price}
-                      </div>
-                      <div className={classes.desktopDescription}>
-                        {price.description}
-                      </div>
-                    </CardContent>
-                  </div>
+                <Card  className={this.priceMouseState(classes, price.title)} >
+                    {this.showPriceDetail(price, classes)}
                 </Card>
               </Grid>
             ))}

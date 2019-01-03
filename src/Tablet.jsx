@@ -33,6 +33,7 @@ class Tablet extends Component {
   state = {
     containerZoom: false,
     featureZoom: {title: '', state: false},
+    priceZoom: {title: '', state: false},
     redirect: false,
   };
 
@@ -63,6 +64,22 @@ class Tablet extends Component {
     if(!this.state.featureZoom.state)
       return this.divideFeatures(title, classes);
   };
+  
+  priceMouseState = (classes, title) =>{
+    if(this.state.priceZoom.state){
+      if(title==this.state.priceZoom.title){
+        if(title== 'Basic')
+          return classes.cardZoomInBasic;
+        return classes.cardZoomInPro;
+      }
+      else{
+        if(title== 'Basic')
+          return classes.cardZoomOutBasic;
+        return classes.cardZoomOutPro;
+      }
+    }
+    return this.getPriceClass(title, classes);
+  };
 
   containerMouseHandler = (event, bool) => {
     this.setState({ containerZoom: bool});
@@ -70,6 +87,10 @@ class Tablet extends Component {
 
   featureMouseHandler = (event, bool, title) => {
     this.setState({ featureZoom: {title: title, state: bool}});
+  };
+
+  priceMouseHandler = (event, bool, title) => {
+    this.setState({ priceZoom: {title: title, state: bool}});
   };
 
   scrollToDiv = (title) => {
@@ -95,6 +116,36 @@ class Tablet extends Component {
         return classes.cardBasic;
       case 'Pro':
         return classes.cardPro;
+    }
+  };
+
+  showPriceDetail(price, classes){
+    if(this.state.priceZoom.state && price.title == this.state.priceZoom.title){
+      return (
+        <div >
+          <div className={classes.cardDetails}>
+            <div className={classes.priceTitle} style={{fontSize: '70px', marginRight: '-20%'}}>
+                {price.title}
+            </div>
+            <div className={classes.price} style={{fontSize: '40px'}}>
+                {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
+            </div>
+          </div>
+          <div className={classes.tabletDescription} style={{marginTop: '5%', marginLeft: '3%', width: '40vw' }}>
+              {price.description}
+          </div>
+        </div>)
+    }
+    else{
+      return (
+        <div className={classes.cardDetails}>
+            <div className={classes.priceTitle} style={{fontSize: '50px'}}>
+                {price.title}
+            </div>
+            <div className={classes.price}>
+                {this.state.priceZoom.state && price.title==this.state.priceZoom.title? price.price: null}
+            </div>
+        </div>);
     }
   };
 
@@ -172,21 +223,11 @@ class Tablet extends Component {
             </div>
             <Grid container  className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
-              <Grid item key={price.title} xs={12} md={6}>
-                <Card className={this.getPriceClass(price.title, classes)}>
-                  <div className={classes.cardDetails}>
-                    <CardContent>
-                      <div className={classes.tabletTitle}>
-                        {price.title}
-                      </div>
-                      <div className={classes.price}>
-                        {price.price}
-                      </div>
-                      <div className={classes.tabletDescription}>
-                        {price.description}
-                      </div>
-                    </CardContent>
-                  </div>
+              <Grid item key={price.title} xs={12} md={6}
+                onMouseEnter={(event)=>this.priceMouseHandler(event, true, price.title)}
+                onMouseLeave={(event) => this.priceMouseHandler(event, false, price.title)}>
+                <Card  className={this.priceMouseState(classes, price.title)} style={{height: '240px'}} >
+                    {this.showPriceDetail(price, classes)}
                 </Card>
               </Grid>
             ))}
