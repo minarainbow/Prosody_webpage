@@ -79,6 +79,10 @@ const styles = theme => ({
   },
   defaultImage: {
     width: "100%", 
+    transition: theme.transitions.create('all', {
+      easing: theme.transitions.easing.sharp,
+      duration: 3*theme.transitions.duration.leavingScreen,
+    }),
   },
   containerZoomImage: {
     width: "110%",
@@ -95,6 +99,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: 3*theme.transitions.duration.leavingScreen,
     }),
+    cursor: 'pointer',
   },
   featureContainer: {
     marginLeft: '7%',
@@ -158,11 +163,13 @@ const styles = theme => ({
   feature: {
     width: '50%',
     textAlign: 'center',
+    cursor: 'pointer',
   },
   featureTablet: {
     width: '40%',
     textAlign: 'center',
     justifyContent: 'space-between',
+    cursor: 'pointer',
   },
   priceContainer: {
     marginBottom: '20%',
@@ -176,6 +183,10 @@ const styles = theme => ({
     height: '120%',
     border: `3px solid ${theme.palette.grey[200]}`,
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
+    transition: theme.transitions.create('all', {
+      easing: theme.transitions.easing.sharp,
+      duration: 3*theme.transitions.duration.leavingScreen,
+    }),
   },
   cardPro: {
     paddingLeft: '3%',
@@ -189,6 +200,10 @@ const styles = theme => ({
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
     background: 'linear-gradient(to right, #264C56 , #393253)',
     color: 'white',
+    transition: theme.transitions.create('all', {
+      easing: theme.transitions.easing.sharp,
+      duration: 3*theme.transitions.duration.leavingScreen,
+    }),
   },
   cardZoomInBasic: {
     paddingLeft: '3%',
@@ -199,6 +214,10 @@ const styles = theme => ({
     border: `3px solid ${theme.palette.grey[200]}`,
     borderRadius: '10px',
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
+    transition: theme.transitions.create('all', {
+      easing: theme.transitions.easing.sharp,
+      duration: 3*theme.transitions.duration.leavingScreen,
+    }),
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
       duration: 3*theme.transitions.duration.leavingScreen,
@@ -253,6 +272,34 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: 3*theme.transitions.duration.leavingScreen,
     }),
+  },
+  cardBasicPhone: {
+    paddingLeft: '3%',
+    paddingRight: '3%',
+    marginLeft: '30%',
+    marginRight: '10%',
+    paddingTop: '10%',
+    paddingBottom: '10%',
+    width: '60%',
+    height: '220px',
+    border: `3px solid ${theme.palette.grey[200]}`,
+    boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
+  },
+  cardProPhone: {
+    position: 'relative',
+    top: '-30%',
+    left: '10%',
+    paddingLeft: '3%',
+    paddingRight: '3%',
+    paddingTop: '10%',
+    paddingBottom: '5%',
+    width: '60%',
+    height: '200px',
+    border: `3px solid ${theme.palette.grey[200]}`,
+    borderRadius: '10px',
+    boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
+    background: 'linear-gradient(to right, #264C56 , #393253)',
+    color: 'white',
   },
   cardDetails: {
     display: 'flex',

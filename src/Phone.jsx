@@ -93,9 +93,9 @@ class Phone extends Component {
   getPriceClass = (title, classes) => {
     switch(title){
       case 'Basic':
-        return classes.cardBasic;
+        return classes.cardBasicPhone;
       case 'Pro':
-        return classes.cardPro;
+        return classes.cardProPhone;
     }
   };
 
@@ -184,22 +184,24 @@ class Phone extends Component {
               ))}
             </div>
             <div
-              className={classes.keySentencePhone}
+              className={classes.keySentencePhone} style={{marginTop: "250px"}}
               align="center">가격 정책<br />
             </div>
             <Grid container className={classes.priceContainer}  ref={(section) => { this.priceContainer = section; }}>
             {prices.map(price => (
-              <Grid item key={price.title} xs={12} md={6}>
+              <Grid item key={price.title} xs={12} md={0}>
                 <Card className={this.getPriceClass(price.title, classes)}>
-                  <div className={classes.cardDetails}>
+                  <div className={classes.cardDetails} style={{height: '9vw'}}>
                     <CardContent>
-                      <div className={classes.phoneTitle}>
-                        {price.title}
+                      <div style={{display: 'flex', marginRight: '20px'}}>
+                        <div className={classes.priceTitle} style={{fontSize: '40px', borderBottom: '0px'}}>
+                          {price.title}
+                        </div>
+                        <div className={classes.price} style={{fontSize: '25px', marginTop: '8px'}}>
+                          {price.price}
+                        </div>
                       </div>
-                      <div className={classes.pricePhone}>
-                        {price.price}
-                      </div>
-                      <div className={classes.phoneDescription}>
+                      <div className={classes.phoneDescription} style={{marginTop: '20px'}}>
                         {price.description}
                       </div>
                     </CardContent>
