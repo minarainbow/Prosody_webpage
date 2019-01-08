@@ -9,7 +9,7 @@ export default class LoginDialog extends React.Component {
     super(props);
 
     this.state = {
-    //   showModal: false,
+      showModal: false,
       loggedIn: null,
       loading: false,
       error: null,
@@ -91,7 +91,7 @@ export default class LoginDialog extends React.Component {
     this.closeModal();
     this.setState({
       loggedIn: method,
-      loading: false
+      loading: false, 
     })
   }
 
@@ -125,7 +125,7 @@ export default class LoginDialog extends React.Component {
   closeModal() {
     this.setState({
       showModal: false,
-      error: null
+      error: null,
     });
   }
 
@@ -145,9 +145,10 @@ export default class LoginDialog extends React.Component {
         <ReactModalLogin
           visible={this.props.showModal}
           onCloseModal={this.closeModal.bind(this)}
+          onCloseModal={this.props.handler}
           loading={isLoading}
           initialTab={this.state.initialTab}
-          error={this.state.error}
+        //   error={this.state.error}
           tabs={{
             afterChange: this.afterTabsChange.bind(this)
           }}
@@ -160,79 +161,79 @@ export default class LoginDialog extends React.Component {
 
             recoverPasswordSuccessLabel: this.state.recoverPasswordSuccess
               ? {
-                  label: "New password has been sent to your mailbox!"
+                  label: "새 비밀번호가 메일로 전송되었습니다"
                 }
               : null,
             recoverPasswordAnchor: {
-              label: "Forgot your password?"
+              label: "비밀번호가 기억나지 않으십니까?"
             },
             loginBtn: {
-              label: "Sign in"
+              label: "로그인"
             },
             registerBtn: {
-              label: "Sign up"
+              label: "회원가입"
             },
             recoverPasswordBtn: {
-              label: "Send new password"
+              label: "비밀번호 재설정"
             },
             loginInputs: [
               {
                 containerClass: 'RML-form-group',
-                label: 'Email',
+                label: '이메일',
                 type: 'email',
                 inputClass: 'RML-form-control',
                 id: 'email',
                 name: 'email',
-                placeholder: 'Email',
+                placeholder: '이메일',
               },
               {
                 containerClass: 'RML-form-group',
-                label: 'Password',
+                label: '비밀번호',
                 type: 'password',
                 inputClass: 'RML-form-control',
                 id: 'password',
                 name: 'password',
-                placeholder: 'Password',
+                placeholder: '비밀번호',
               }
             ],
             registerInputs: [
               {
                 containerClass: 'RML-form-group',
-                label: 'Nickname',
+                label: '닉네임',
                 type: 'text',
                 inputClass: 'RML-form-control',
                 id: 'login',
                 name: 'login',
-                placeholder: 'Nickname',
+                placeholder: '닉네임',
               },
               {
                 containerClass: 'RML-form-group',
-                label: 'Email',
+                label: '이메일',
                 type: 'email',
                 inputClass: 'RML-form-control',
                 id: 'email',
                 name: 'email',
-                placeholder: 'Email',
+                placeholder: '이메일',
               },
               {
                 containerClass: 'RML-form-group',
-                label: 'Password',
+                label: '비밀번호',
                 type: 'password',
                 inputClass: 'RML-form-control',
                 id: 'password',
                 name: 'password',
-                placeholder: 'Password',
+                placeholder: '비밀번호',
               }
             ],
             recoverPasswordInputs: [
               {
                 containerClass: 'RML-form-group',
-                label: 'Email',
+                label: '이메일',
                 type: 'email',
                 inputClass: 'RML-form-control',
                 id: 'email',
                 name: 'email',
-                placeholder: 'Email',
+                placeholder: '이메일',
               },
             ],
           }}

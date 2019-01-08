@@ -26,7 +26,14 @@ class Desktop extends Component {
       redirect: false,
       anchorEl: null,
       showModal: false,
-    }
+    };
+    this.handler = this.handler.bind(this);
+  }
+
+  handler = () => {
+    this.setState({
+      showModal: false,
+    });
   }
 
   openModal = () =>{
