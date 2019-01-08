@@ -1,35 +1,40 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Markdown from './Markdown';
 import logo from './images/logo.png';
 import MicBlend from './images/MicBlend.png';
 import {sections, APIfeatures, prices} from './scripts';
 import scrollToComponent from 'react-scroll-to-component';
-import classNames from 'classnames';
 import {Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import LoginDialog from './LoginDialog';
 
 
 class Desktop extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      containerZoom: false,
+      featureZoom: {title: '', state: false},
+      priceZoom: {title: '', state: false},
+      redirect: false,
+      anchorEl: null,
+      showModal: false,
+    }
+  }
 
-  state = {
-    containerZoom: false,
-    featureZoom: {title: '', state: false},
-    priceZoom: {title: '', state: false},
-    redirect: false,
-  };
+  openModal = () =>{
+    this.setState({
+      showModal: true,
+      anchorEl: null,
+    });
+  }
 
   setRedirect = () => {
     this.setState({
@@ -113,6 +118,14 @@ class Desktop extends Component {
     }
   };
 
+    handleClick = event => {
+      this.setState({ anchorEl: event.currentTarget });
+    };
+
+    handleClose = () => {
+      this.setState({ anchorEl: null });
+    };
+
   showPriceDetail(price, classes){
     if(this.state.priceZoom.state && price.title == this.state.priceZoom.title){
       return (
@@ -155,6 +168,13 @@ class Desktop extends Component {
 
   render() {
     const {classes} = this.props;
+    const loggedIn = this.state.loggedIn
+      ? <div>
+          <p>You are signed in with: {this.state.loggedIn}</p>
+        </div>
+      : <div>
+          <p>You are signed out</p>
+      </div>;
 
     return (
       <React.Fragment>        
@@ -166,9 +186,26 @@ class Desktop extends Component {
               Desktop
               </div>
             </Button>
-            <IconButton color="action">
-              <PersonIcon  className={classes.mypageIcon} />
-            </IconButton>
+            <div>
+              <IconButton color="action"  onClick={this.handleClick}>
+                <PersonIcon  className={classes.mypageIcon} />
+              </IconButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={this.state.anchorEl}
+                open={Boolean(this.state.anchorEl)}
+                onClose={this.handleClose}
+              >
+                <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
+                  <MenuItem onClick={this.handleClose}>프로필</MenuItem>
+                </Link>
+                <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
+                  <MenuItem onClick={this.handleClose}>로그아웃</MenuItem>
+                </Link>
+                  <MenuItem onClick={this.openModal}>로그인 / 회원가입</MenuItem>
+              </Menu>                
+            </div>
+            
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
           {sections.map(section => (
@@ -178,6 +215,7 @@ class Desktop extends Component {
             </Button>
           ))}
         </Toolbar>
+        <LoginDialog showModal={this.state.showModal}/>
         <main>
             <div className={classes.container}  
               onMouseEnter={(event)=>this.containerMouseHandler(event, true)}

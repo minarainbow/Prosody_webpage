@@ -417,6 +417,11 @@ const styles = theme => ({
     color: "#fff",
   },
 
+ /*Below are for LoginDialog*/
+ dialog: {
+   fullWidth: true,
+   marginBottom: '20px',
+ }
   
 });
 
