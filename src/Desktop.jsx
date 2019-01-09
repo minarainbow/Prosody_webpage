@@ -222,7 +222,7 @@ class Desktop extends Component {
             </Button>
           ))}
         </Toolbar>
-        <LoginDialog showModal={this.state.showModal}/>
+        <LoginDialog showModal={this.state.showModal} handler = {this.handler}/>
         <main>
             <div className={classes.container}  
               onMouseEnter={(event)=>this.containerMouseHandler(event, true)}
