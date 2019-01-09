@@ -417,14 +417,6 @@ const styles = theme => ({
     color: "#fff",
   },
 
-  mypageMenu: {
-    marginLeft: '100px',
-    marginTop: '50px',
-    width: '100%',
-    maxWidth: 200,
-    backgroundColor: theme.palette.background.paper,
-  },
-
  /*Below are for LoginDialog*/
  dialog: {
    fullWidth: true,

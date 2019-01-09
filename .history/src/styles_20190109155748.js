@@ -418,10 +418,8 @@ const styles = theme => ({
   },
 
   mypageMenu: {
-    marginLeft: '100px',
-    marginTop: '50px',
     width: '100%',
-    maxWidth: 200,
+    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
 
