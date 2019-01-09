@@ -163,12 +163,14 @@ class Mypage extends Component {
       <React.Fragment>        
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
-          <Button color="inherit" className={classes.toolbarTitle}>
-              <img src = {logo} className = {classes.mainLogo}/>
-              <div className={classes.logoTitle} >
-              Tablet
-              </div>
-            </Button>
+            <Link to = "/"  className={classes.toolbarTitleTablet}>
+              <Button >
+                <img src = {logo} className = {classes.mainLogo}/>
+                <div className={classes.logoTitle} >
+                Tablet
+                </div>
+              </Button>
+            </Link>
             
             <Link to="/">
               <IconButton color="action">
@@ -178,16 +180,16 @@ class Mypage extends Component {
           </Toolbar>
           <div className={classes.mypageMenu}>
           <List component="nav">
+          <Link to="/mypage/profile" style={{textDecoration: 'none', outline: 'none',}}>
             <ListItem
               button
               selected={this.state.selectedIndex === 0}
               onClick={event => this.handleListItemClick(event, 0)}
             >
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary="프로필" />
             </ListItem>
+            </Link>
+            <Divider />
             <ListItem
               button
               selected={this.state.selectedIndex === 1}
@@ -196,25 +198,25 @@ class Mypage extends Component {
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
-              <ListItemText primary="Drafts" />
+              <ListItemText primary="메일함" />
             </ListItem>
-          </List>
-          <Divider />
-          <List component="nav">
+            <Divider />
             <ListItem
               button
               selected={this.state.selectedIndex === 2}
               onClick={event => this.handleListItemClick(event, 2)}
             >
-              <ListItemText primary="Trash" />
+              <ListItemText primary="더미" />
             </ListItem>
+            <Divider />
             <ListItem
               button
               selected={this.state.selectedIndex === 3}
               onClick={event => this.handleListItemClick(event, 3)}
             >
-              <ListItemText primary="Spam" />
+              <ListItemText primary="더미2" />
             </ListItem>
+            <Divider />
           </List>
         </div>
         

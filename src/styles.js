@@ -16,6 +16,8 @@ const styles = theme => ({
     marginLeft: '3%',
     marginRight: '3%',
     borderBottom: `3px solid ${theme.palette.grey[300]}`,
+    textDecoration: 'none', 
+    outline: 'none',
   },
   toolbarMainPhone: {
     width: 'auto',
@@ -30,18 +32,24 @@ const styles = theme => ({
     width: '240px',
     marginLeft: '2%',
     marginRight: '78%',
+    textDecoration: 'none', 
+    outline: 'none'
   },
   toolbarTitleTablet: {
     display: 'flex',
     width: '220px',
     marginLeft: '2%',
     marginRight: '70%',
+    textDecoration: 'none', 
+    outline: 'none',
   },
   toolbarTitlePhone: {
     display: 'flex',
     width: '160px',
     marginLeft: '1px',
     marginRight: 'auto',
+    textDecoration: 'none', 
+    outline: 'none',
   },
   toolbarMenu: {
     width: '35%',
@@ -416,13 +424,23 @@ const styles = theme => ({
     textAlign: 'center',
     color: "#fff",
   },
+  mypageMain: {
+    width: '100%',
+    // display: 'inline-block',
+  },
 
   mypageMenu: {
-    marginLeft: '100px',
-    marginTop: '50px',
-    width: '100%',
+    marginLeft: '60px',
+    marginTop: '40px',
+    height: '400px',
     maxWidth: 200,
-    backgroundColor: theme.palette.background.paper,
+    border: `3px solid ${theme.palette.grey[300]}`,
+  },
+
+  profileStepper: {
+    
+    width: '800px',
+    marginLeft: '200px'
   },
 
  /*Below are for LoginDialog*/

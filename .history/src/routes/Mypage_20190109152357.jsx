@@ -199,8 +199,8 @@ class Mypage extends Component {
                 onClose={this.handleClose}
               >
                 <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
-                  <MenuItem onClick={this.handleClose}>프로필</MenuItem>
-                </Link>
+                  <MenuItem onClick={this.handleClose}>마이페이지</MenuItem>
+                </Link지
                 <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
                   <MenuItem onClick={this.handleClose}>로그아웃</MenuItem>
                 </Link>

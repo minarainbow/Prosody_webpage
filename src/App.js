@@ -5,6 +5,7 @@ import LoadingMessage from './LoadingMessage';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Mypage from './routes/Mypage';
 import Home from './routes/Home';
+import MypageProfile from './routes/MypageProfile';
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +38,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component = {Home}></Route>
-          <Route path="/mypage" component = {Mypage}></Route>
+          <Route exact path="/mypage" component = {Mypage}></Route>
+          <Route path="/mypage/profile" component = {MypageProfile}></Route>
         </div>
       </Router>
     );

@@ -193,12 +193,14 @@ class Tablet extends Component {
       <React.Fragment>
         <div >
           <Toolbar className={classes.toolbarMain}>
-          <Button color="inherit" className={classes.toolbarTitleTablet}>
+            <Link to = "/" className={classes.toolbarTitleTablet}>
+            <Button  >
               <img src = {logo} className = {classes.mainLogo}/>
               <div className={classes.logoTitle} >
               Tablet
               </div>
             </Button>
+            </Link>
             <div>
               <IconButton color="action" onClick={this.handleClick}>
                 <PersonIcon  className={classes.mypageIcon} />
@@ -210,7 +212,7 @@ class Tablet extends Component {
                 onClose={this.handleClose}
               >
                 <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
-                  <MenuItem onClick={this.handleClose}>프로필</MenuItem>
+                  <MenuItem onClick={this.handleClose}>마이페이지</MenuItem>
                 </Link>
                 <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
                   <MenuItem onClick={this.handleClose}>로그아웃</MenuItem>
