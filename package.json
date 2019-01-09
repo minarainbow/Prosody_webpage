@@ -33,5 +33,9 @@
   "devDependencies": {
     "@material-ui/icons": "^3.0.1",
     "react-dev-utils": "^6.1.1"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/minarainbow/Prosody_webpage.git",
+  "author": "minarainbow <minarainbow@kaist.ac.kr>",
+  "license": "MIT"
 }
