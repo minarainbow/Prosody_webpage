@@ -36,10 +36,10 @@ const styles = theme => ({
     outline: 'none'
   },
   toolbarTitleTablet: {
+    cursor: 'pointer',
     display: 'flex',
-    width: '220px',
     marginLeft: '2%',
-    marginRight: '70%',
+    marginRight: 'auto',
     textDecoration: 'none', 
     outline: 'none',
   },
@@ -50,6 +50,22 @@ const styles = theme => ({
     marginRight: 'auto',
     textDecoration: 'none', 
     outline: 'none',
+  },
+  toolbarAPI: {
+    marginTop: '0.5%',
+    marginLeft: '12%',
+    cursor: 'pointer',
+    textDecoration: 'none', 
+    outline: 'none',
+    color: theme.palette.grey[600],
+  },
+  APIButton: {
+    fontSize: "20px", 
+    color: '#708090'
+  },
+  searchBar: {
+    marginRight: '2%',
+    width: '220px',
   },
   toolbarMenu: {
     width: '35%',
@@ -78,7 +94,7 @@ const styles = theme => ({
   mypageIcon: {
     fontSize: '38px',
     marginLeft: 'auto',
-    marginRight: '8px',
+    marginRight: '8px'
   },
   container: {
     width: '100%',
@@ -433,7 +449,7 @@ const styles = theme => ({
     marginLeft: '60px',
     marginTop: '40px',
     height: '400px',
-    maxWidth: 200,
+    width: 200,
     border: `3px solid ${theme.palette.grey[300]}`,
   },
 

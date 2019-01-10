@@ -18,9 +18,9 @@ import {Link} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles.js'
 import Login from '../LoginDialog.jsx';
+import SearchBar from 'material-ui-search-bar';
 
-
-class Mypage extends Component {
+class API extends Component {
 
   state = {
     containerZoom: false,
@@ -171,7 +171,10 @@ class Mypage extends Component {
                 </div>
               </Button>
             </Link>
-            
+            <SearchBar
+                onChange={() => console.log('onChange')}
+                onRequestSearch={() => console.log('onRequestSearch')}
+                className={classes.searchBar}/>            
             <Link to="/">
               <IconButton color="action">
                 <HomeIcon  className={classes.mypageIcon} />
@@ -180,13 +183,13 @@ class Mypage extends Component {
           </Toolbar>
           <div className={classes.mypageMenu}>
           <List component="nav">
-          <Link to="/mypage/profile" style={{textDecoration: 'none', outline: 'none',}}>
+          <Link to="/API/about" style={{textDecoration: 'none', outline: 'none',}}>
             <ListItem
               button
               selected={this.state.selectedIndex === 0}
               onClick={event => this.handleListItemClick(event, 0)}
             >
-              <ListItemText primary="프로필" />
+              <ListItemText primary="API 소개" />
             </ListItem>
             </Link>
             <Divider />
@@ -195,7 +198,7 @@ class Mypage extends Component {
               selected={this.state.selectedIndex === 1}
               onClick={event => this.handleListItemClick(event, 1)}
             >
-              <ListItemText primary="메일함" />
+              <ListItemText primary="운영정책" />
             </ListItem>
             <Divider />
             <ListItem
@@ -203,7 +206,7 @@ class Mypage extends Component {
               selected={this.state.selectedIndex === 2}
               onClick={event => this.handleListItemClick(event, 2)}
             >
-              <ListItemText primary="더미" />
+              <ListItemText primary="F&Q" />
             </ListItem>
             <Divider />
             <ListItem
@@ -211,7 +214,7 @@ class Mypage extends Component {
               selected={this.state.selectedIndex === 3}
               onClick={event => this.handleListItemClick(event, 3)}
             >
-              <ListItemText primary="더미2" />
+              <ListItemText primary="이용약관" />
             </ListItem>
             <Divider />
           </List>
@@ -223,4 +226,4 @@ class Mypage extends Component {
   }
 }
 
-export default withStyles(styles) (Mypage);
+export default withStyles(styles) (API);

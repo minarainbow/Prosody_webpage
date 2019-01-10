@@ -194,12 +194,19 @@ class Tablet extends Component {
         <div >
           <Toolbar className={classes.toolbarMain}>
             <Link to = "/" className={classes.toolbarTitleTablet}>
-            <Button  >
-              <img src = {logo} className = {classes.mainLogo}/>
-              <div className={classes.logoTitle} >
-              Tablet
-              </div>
-            </Button>
+              <Button  >
+                <img src = {logo} className = {classes.mainLogo}/>
+                <div className={classes.logoTitle} >
+                Tablet
+                </div>
+              </Button>
+            </Link>
+            <Link to = "/api" className={classes.toolbarAPI}>
+              <Button>
+                <div className={classes.APIButton} >
+                API
+                </div>
+              </Button>
             </Link>
             <div>
               <IconButton color="action" onClick={this.handleClick}>
