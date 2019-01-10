@@ -8,6 +8,7 @@
     "markdown-to-jsx": "^6.9.0",
     "material-ui-search-bar": "^1.0.0-beta.13",
     "react": "^16.6.3",
+    "react-copyright": "^0.0.1",
     "react-dom": "^16.6.3",
     "react-loading": "^2.0.3",
     "react-modal": "^3.8.1",

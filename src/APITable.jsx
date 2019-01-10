@@ -8,6 +8,45 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import classNames from 'classnames';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
+const styles = theme =>({
+    root: {
+      marginLeft: '4%',
+      marginTop: '40px',
+      width: '65%',
+      overflowX: 'auto',
+      display: 'block',
+    },
+    table: {
+      minWidth: 700,
+    },
+    title: {
+        marginLeft: '20px',
+        fontSize: '25px',
+        paddingBottom: '20px',
+        marginBottom: '20px',
+        borderBottom: `1.5px solid ${theme.palette.grey[300]}`,
+    },
+    columnTitle: {
+      marginLeft: '20px',
+      marginBottom: '20px',
+      fontSize: '15px', 
+    },
+    row: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.background.default,
+      },
+    },
+    footer: {
+      marginTop: theme.spacing.unit * 8,
+      borderTop: `1px solid ${theme.palette.divider}`,
+      padding: `${theme.spacing.unit * 6}px 0`,
+    },
+  });
+  
 
 const CustomTableCell = withStyles(theme => ({
     head: {
@@ -18,36 +57,24 @@ const CustomTableCell = withStyles(theme => ({
     },
   }))(TableCell);
 
-const styles = theme =>({
-  root: {
-    marginLeft: '4%',
-    marginTop: '40px',
-    width: '65%',
-    overflowX: 'auto',
-    display: 'block',
-  },
-  table: {
-    minWidth: 700,
-  },
-  title: {
-      marginLeft: '20px',
-      fontSize: '25px',
-      paddingBottom: '20px',
-      marginBottom: '20px',
-      borderBottom: `1.5px solid ${theme.palette.grey[300]}`,
-  },
-  columnTitle: {
-    marginLeft: '20px',
-    marginBottom: '20px',
-    fontSize: '15px', 
-    // fontWeight: 'bold'
-  },
-  row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
+  const footers = [
+    {
+      title: 'Company',
+      description: ['Team', 'History', 'Contact us', 'Locations'],
     },
-  },
-});
+    {
+      title: 'Features',
+      description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    },
+    {
+      title: 'Resources',
+      description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+    },
+    {
+      title: 'Legal',
+      description: ['Privacy policy', 'Terms of use'],
+    },
+  ];
 
 let id = 0;
 function createData(name, explanation, calls) {
@@ -101,6 +128,24 @@ function APITable(props) {
             </TableBody>
         </Table>
         </Paper>
+        {/* Footer */}
+        <footer className={classNames(classes.footer, classes.layout)}>
+            <Grid container spacing={32} justify="space-evenly">
+            {footers.map(footer => (
+                <Grid item xs key={footer.title}>
+                <Typography variant="h6" color="textPrimary" gutterBottom>
+                    {footer.title}
+                </Typography>
+                {footer.description.map(item => (
+                    <Typography key={item} variant="subtitle1" color="textSecondary">
+                    {item}
+                    </Typography>
+                ))}
+                </Grid>
+            ))}
+            </Grid>
+        </footer>
+        {/* End footer */}
       </div>
     
   );

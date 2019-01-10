@@ -121,8 +121,7 @@ class APIAbout extends Component {
                     <ListItem
                     button
                     selected={this.state.selectedIndex === 3}
-                    onClick={event => this.handleListItemClick(event, 3)}
-                    >
+                    onClick={event => this.handleListItemClick(event, 3)}>
                         <ListItemText primary="이용약관" />
                     </ListItem>
                     <Divider />
@@ -130,6 +129,7 @@ class APIAbout extends Component {
             </div>
             <APITable />
           </div>
+          {/* <Copyright>Mina Huh</Copyright> */}
         </div>
       </React.Fragment>
     );
