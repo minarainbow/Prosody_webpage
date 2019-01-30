@@ -12,74 +12,74 @@ import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-const styles = theme =>({
-    root: {
-      marginLeft: '4%',
-      marginTop: '40px',
-      width: '65%',
-      overflowX: 'auto',
-      display: 'block',
+const styles = theme => ({
+  root: {
+    marginLeft: '4%',
+    marginTop: '40px',
+    width: '65%',
+    overflowX: 'auto',
+    display: 'block',
+  },
+  table: {
+    minWidth: 700,
+  },
+  title: {
+    marginLeft: '20px',
+    fontSize: '25px',
+    paddingBottom: '20px',
+    marginBottom: '20px',
+    borderBottom: `1.5px solid ${theme.palette.grey[300]}`,
+  },
+  columnTitle: {
+    marginLeft: '20px',
+    marginBottom: '20px',
+    fontSize: '15px',
+  },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
     },
-    table: {
-      minWidth: 700,
-    },
-    title: {
-        marginLeft: '20px',
-        fontSize: '25px',
-        paddingBottom: '20px',
-        marginBottom: '20px',
-        borderBottom: `1.5px solid ${theme.palette.grey[300]}`,
-    },
-    columnTitle: {
-      marginLeft: '20px',
-      marginBottom: '20px',
-      fontSize: '15px', 
-    },
-    row: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.background.default,
-      },
-    },
-    footer: {
-      marginTop: theme.spacing.unit * 8,
-      borderTop: `1px solid ${theme.palette.divider}`,
-      padding: `${theme.spacing.unit * 6}px 0`,
-    },
-  });
-  
+  },
+  footer: {
+    marginTop: theme.spacing.unit * 8,
+    borderTop: `1px solid ${theme.palette.divider}`,
+    padding: `${theme.spacing.unit * 6}px 0`,
+  },
+});
+
 
 const CustomTableCell = withStyles(theme => ({
-    head: {
-      backgroundColor: theme.palette.grey[300],
-    },
-    body: {
-      fontSize: 14,
-    },
-  }))(TableCell);
+  head: {
+    backgroundColor: theme.palette.grey[300],
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
-  const footers = [
-    {
-      title: 'Company',
-      description: ['Team', 'History', 'Contact us', 'Locations'],
-    },
-    {
-      title: 'Features',
-      description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-    },
-    {
-      title: 'Resources',
-      description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-    },
-    {
-      title: 'Legal',
-      description: ['Privacy policy', 'Terms of use'],
-    },
-  ];
+const footers = [
+  {
+    title: 'Company',
+    description: ['Team', 'History', 'Contact us', 'Locations'],
+  },
+  {
+    title: 'Features',
+    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+  },
+  {
+    title: 'Resources',
+    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+  },
+  {
+    title: 'Legal',
+    description: ['Privacy policy', 'Terms of use'],
+  },
+];
 
 let id = 0;
 function createData(name, explanation, calls) {
   id += 1;
-  return { id, name, explanation, calls};
+  return { id, name, explanation, calls };
 }
 
 const data = [
@@ -97,57 +97,55 @@ function APITable(props) {
   const { classes } = props;
 
   return (
-      <div  className={classes.root}>
-        <div className={classes.title} >
-            휴멜로 오픈 API 목록
+    <div className={classes.root}>
+      <div className={classes.title} >
+        휴멜로 오픈 API 목록
         </div>
-        <div className={classes.columnTitle} >
-            휴멜로의 오픈 API 목록 및 안내입니다.
+      <div className={classes.columnTitle} >
+        휴멜로의 오픈 API 목록 및 안내입니다.
         </div>
-        <Paper>
+      <Paper>
         <Table className={classes.table}>
-            <TableHead>
+          <TableHead>
             <TableRow>
-                <CustomTableCell align="center" className={classes.columnTitle} >API명</CustomTableCell>
-                <CustomTableCell align="center" className={classes.columnTitle} >설명</CustomTableCell>
-                <CustomTableCell align="center" className={classes.columnTitle} >호출제한</CustomTableCell>
+              <CustomTableCell align="center" className={classes.columnTitle} >API명</CustomTableCell>
+              <CustomTableCell align="center" className={classes.columnTitle} >설명</CustomTableCell>
+              <CustomTableCell align="center" className={classes.columnTitle} >호출제한</CustomTableCell>
             </TableRow>
-            </TableHead>
-            <TableBody>
+          </TableHead>
+          <TableBody>
             {data.map(n => {
-                return (
+              return (
                 <TableRow className={classes.row} key={n.id}>
-                    <CustomTableCell component="th" scope="row" style={{fontSize: '15px'}}>
+                  <CustomTableCell component="th" scope="row" style={{ fontSize: '15px' }}>
                     {n.name}
-                    </CustomTableCell>
-                    <CustomTableCell align="left" style={{fontSize: '15px'}}>{n.explanation}</CustomTableCell>
-                    <CustomTableCell align="left" style={{fontSize: '15px'}}>{n.calls}</CustomTableCell>
+                  </CustomTableCell>
+                  <CustomTableCell align="left" style={{ fontSize: '15px' }}>{n.explanation}</CustomTableCell>
+                  <CustomTableCell align="left" style={{ fontSize: '15px' }}>{n.calls}</CustomTableCell>
                 </TableRow>
-                );
+              );
             })}
-            </TableBody>
+          </TableBody>
         </Table>
-        </Paper>
-        {/* Footer */}
-        <footer className={classNames(classes.footer, classes.layout)}>
-            <Grid container spacing={32} justify="space-evenly">
-            {footers.map(footer => (
-                <Grid item xs key={footer.title}>
-                <Typography variant="h6" color="textPrimary" gutterBottom>
-                    {footer.title}
+      </Paper>
+      <footer className={classNames(classes.footer, classes.layout)}>
+        <Grid container spacing={32} justify="space-evenly">
+          {footers.map(footer => (
+            <Grid item xs key={footer.title}>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
+                {footer.title}
+              </Typography>
+              {footer.description.map(item => (
+                <Typography key={item} variant="subtitle1" color="textSecondary">
+                  {item}
                 </Typography>
-                {footer.description.map(item => (
-                    <Typography key={item} variant="subtitle1" color="textSecondary">
-                    {item}
-                    </Typography>
-                ))}
-                </Grid>
-            ))}
+              ))}
             </Grid>
-        </footer>
-        {/* End footer */}
-      </div>
-    
+          ))}
+        </Grid>
+      </footer>
+    </div>
+
   );
 }
 

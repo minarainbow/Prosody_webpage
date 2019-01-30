@@ -19,20 +19,9 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles.js'
 import SearchBar from 'material-ui-search-bar';
 import APITable from '../APITable';
+import APIMenu from './APIMenu';
 
 class APIAbout extends Component {
-
-  state = {
-    containerZoom: false,
-    featureZoom: {title: '', state: false},
-    priceZoom: {title: '', state: false},
-    redirect: false,
-    selectedIndex: 0,
-  };
-
-  handleListItemClick = (event, index) => {
-    this.setState({ selectedIndex: index });
-  };
 
   setRedirect = () => {
     this.setState({
@@ -45,24 +34,6 @@ class APIAbout extends Component {
       return <Redirect to='/'/>
     }
   }
-
-  scrollToDiv = (title) => {
-    switch(title){
-      case 'API 개요':
-        scrollToComponent(this.featureContainer);
-        break;
-      case '다운로드':
-        scrollToComponent(this.featureContainer);
-        break;
-      case '가격정책':
-        scrollToComponent(this.priceContainer);
-        break;
-      case '지원 및 문의':
-        scrollToComponent(this.priceContainer);
-        break;
-    }
-  };
-
 
   render() {
     const {classes} = this.props;
@@ -90,46 +61,9 @@ class APIAbout extends Component {
             </Link>
           </Toolbar>
         <div style={{display: 'flex'}}>
-            <div className={classes.mypageMenu}>
-                <List component="nav">
-                    <Link to="/mypage/profile" style={{textDecoration: 'none', outline: 'none',}}>
-                        <ListItem
-                        button
-                        selected={this.state.selectedIndex === 0}
-                        onClick={event => this.handleListItemClick(event, 0)}
-                        >
-                        <ListItemText primary="API 소개" />
-                        </ListItem>
-                    </Link>
-                    <Divider />
-                    <ListItem
-                    button
-                    selected={this.state.selectedIndex === 1}
-                    onClick={event => this.handleListItemClick(event, 1)}
-                    >
-                        <ListItemText primary="운영정책" />
-                    </ListItem>
-                    <Divider />
-                    <ListItem
-                    button
-                    selected={this.state.selectedIndex === 2}
-                    onClick={event => this.handleListItemClick(event, 2)}
-                    >
-                        <ListItemText primary="F&Q" />
-                    </ListItem>
-                    <Divider />
-                    <ListItem
-                    button
-                    selected={this.state.selectedIndex === 3}
-                    onClick={event => this.handleListItemClick(event, 3)}>
-                        <ListItemText primary="이용약관" />
-                    </ListItem>
-                    <Divider />
-                </List>
-            </div>
+            <APIMenu selectedIndex={0}/>
             <APITable />
           </div>
-          {/* <Copyright>Mina Huh</Copyright> */}
         </div>
       </React.Fragment>
     );

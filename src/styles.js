@@ -1,5 +1,5 @@
 const styles = theme => ({
-  
+
   layout: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
@@ -16,7 +16,7 @@ const styles = theme => ({
     marginLeft: '3%',
     marginRight: '3%',
     borderBottom: `3px solid ${theme.palette.grey[300]}`,
-    textDecoration: 'none', 
+    textDecoration: 'none',
     outline: 'none',
   },
   toolbarMainPhone: {
@@ -32,7 +32,7 @@ const styles = theme => ({
     width: '240px',
     marginLeft: '2%',
     marginRight: '78%',
-    textDecoration: 'none', 
+    textDecoration: 'none',
     outline: 'none'
   },
   toolbarTitleTablet: {
@@ -40,7 +40,7 @@ const styles = theme => ({
     display: 'flex',
     marginLeft: '2%',
     marginRight: 'auto',
-    textDecoration: 'none', 
+    textDecoration: 'none',
     outline: 'none',
   },
   toolbarTitlePhone: {
@@ -48,19 +48,19 @@ const styles = theme => ({
     width: '160px',
     marginLeft: '1px',
     marginRight: 'auto',
-    textDecoration: 'none', 
+    textDecoration: 'none',
     outline: 'none',
   },
   toolbarAPI: {
     marginTop: '0.5%',
     marginLeft: '12%',
     cursor: 'pointer',
-    textDecoration: 'none', 
+    textDecoration: 'none',
     outline: 'none',
     color: theme.palette.grey[600],
   },
   APIButton: {
-    fontSize: "20px", 
+    fontSize: "20px",
     color: '#708090'
   },
   searchBar: {
@@ -102,17 +102,17 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   defaultImage: {
-    width: "100%", 
+    width: "100%",
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
   containerZoomImage: {
     width: "110%",
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
   featureZoomImage: {
@@ -121,7 +121,7 @@ const styles = theme => ({
     width: "100%",
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
     cursor: 'pointer',
   },
@@ -209,7 +209,7 @@ const styles = theme => ({
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
   cardPro: {
@@ -226,7 +226,7 @@ const styles = theme => ({
     color: 'white',
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
   cardZoomInBasic: {
@@ -240,11 +240,11 @@ const styles = theme => ({
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
     cursor: 'pointer',
   },
@@ -259,7 +259,7 @@ const styles = theme => ({
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
   cardZoomInPro: {
@@ -276,7 +276,7 @@ const styles = theme => ({
     color: 'white',
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
     cursor: 'pointer',
   },
@@ -294,7 +294,7 @@ const styles = theme => ({
     color: 'white',
     transition: theme.transitions.create('all', {
       easing: theme.transitions.easing.sharp,
-      duration: 3*theme.transitions.duration.leavingScreen,
+      duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
   cardBasicPhone: {
@@ -334,7 +334,7 @@ const styles = theme => ({
     fontStyle: 'italic',
     textShadow: `4px 4px 8px ${theme.palette.grey[600]}`,
     fontSize: '65px',
-  }, 
+  },
   price: {
     marginLeft: '45%',
     fontStyle: 'italic',
@@ -369,26 +369,26 @@ const styles = theme => ({
     display: 'none',
   },
   phoneTitle: {
-    fontSize: "22px", 
+    fontSize: "22px",
     fontWeight: "bold",
   },
   phoneDescription: {
     fontSize: "16px",
   },
   tabletTitle: {
-    fontSize: "1.8vw", 
+    fontSize: "1.8vw",
     fontWeight: "bold",
   },
   tabletDescription: {
-    fontSize: "1.5vw", 
+    fontSize: "1.5vw",
     lineHeight: "200%"
   },
   desktopTitle: {
-    fontSize: "28px", 
+    fontSize: "28px",
     fontWeight: "bold"
   },
   desktopDescription: {
-    fontSize: "21px", 
+    fontSize: "21px",
     lineHeight: "200%"
   },
   drawerPaper: {
@@ -419,12 +419,12 @@ const styles = theme => ({
     paddingTop: "2.4vw",
     paddingBottom: "3.2vw",
     marginLeft: "25%",
-    marginRight:"50%", 
-    width: "50%", 
+    marginRight: "50%",
+    width: "50%",
     borderBottom: `3px solid ${theme.palette.grey[300]}`,
   },
   loadingPage: {
-    color: '#fff',
+    color: 'white',
     fontSize: "30px",
     width: '100%',
     height: '100vh',
@@ -438,14 +438,13 @@ const styles = theme => ({
   loadingTitle: {
     paddingTop: '100px',
     textAlign: 'center',
-    color: "#fff",
+    color: "white",
   },
   mypageMain: {
     width: '100%',
-    // display: 'inline-block',
   },
 
-  mypageMenu: {
+  sideMenu: {
     marginLeft: '60px',
     marginTop: '40px',
     height: '400px',
@@ -454,17 +453,17 @@ const styles = theme => ({
   },
 
   profileStepper: {
-    
+
     width: '800px',
     marginLeft: '200px'
   },
 
- /*Below are for LoginDialog*/
- dialog: {
-   fullWidth: true,
-   marginBottom: '20px',
- }
-  
+  /*Below are for LoginDialog*/
+  dialog: {
+    fullWidth: true,
+    marginBottom: '20px',
+  }
+
 });
 
 export default styles;
