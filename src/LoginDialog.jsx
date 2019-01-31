@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactModalLogin from 'react-modal-login';
-import Typography from '@material-ui/core/Typography';
-import Popover from '@material-ui/core/Popover';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 export default class LoginDialog extends React.Component {
 
@@ -110,6 +108,14 @@ export default class LoginDialog extends React.Component {
       })
     }
     else {
+      console.log("here axios post");
+      axios.post('http://127.0.0.1:8000/ttsapi/users/', {
+        username: login,
+        confirm_password: password,
+        email: email,
+        password: password,
+      }).then(res => console.log('res:' + res))
+        .catch(err => console.log('err:' + err.response));
       this.onLoginSuccess('form');
     }
   }
@@ -145,7 +151,6 @@ export default class LoginDialog extends React.Component {
   }
 
   onLoginSuccess(method, response) {
-
     this.closeModal();
     this.setState({
       loggedIn: method,
