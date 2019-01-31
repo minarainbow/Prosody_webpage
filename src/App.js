@@ -45,7 +45,7 @@ class App extends Component {
           <Route exact path="/mypage" component={Mypage}></Route>
           <Route path="/mypage/profile" component={MypageProfile}></Route>
           <Route path="/mypage/payment" component={MypagePayment}></Route>
-          <Route exact path="/api" component={API}></Route>
+          <Route exact path="/api" component={APIAbout}></Route>
           <Route path="/api/about" component={APIAbout}></Route>
           <Route path="/api/operation" component={APIOperation}></Route>
           <Route path="/api/f&q" component={API}></Route>

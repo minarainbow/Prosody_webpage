@@ -52,6 +52,7 @@ const styles = theme => ({
     color: theme.palette.grey[600],
   },
   APIButton: {
+    fontFamily: 'NanumSquare',
     fontSize: "20px",
     color: '#708090'
   },
@@ -78,12 +79,15 @@ const styles = theme => ({
     marginRight: '10px',
   },
   logoTitle: {
+    fontFamily: 'NanumSquare',
     fontSize: '30px',
   },
   logoTitlePhone: {
+    fontFamily: 'NanumSquare',
     fontSize: '24px',
   },
   mypageIcon: {
+    fontFamily: 'NanumSquare',
     fontSize: '38px',
     marginLeft: 'auto',
     marginRight: '8px'
@@ -136,18 +140,21 @@ const styles = theme => ({
     textAlign: 'center',
   },
   keySentence: {
+    fontFamily: 'NanumSquare',
     marginTop: '10%',
     marginBottom: '5%',
     fontSize: '2.1vw',
     fontWeight: 'bold',
   },
   keySentencePhone: {
+    fontFamily: 'NanumSquare',
     marginTop: '6%',
     marginBottom: '6%',
     fontSize: '21px',
     fontWeight: 'bold',
   },
   APITitle: {
+    fontFamily: 'NanumSquare',
     position: 'absolute',
     top: '18vw',
     left: '12vw',
@@ -155,6 +162,8 @@ const styles = theme => ({
     fontSize: '35px',
   },
   APIDetail: {
+    lineHeight: '150%',
+    fontFamily: 'NanumSquare',
     position: 'absolute',
     top: '22vw',
     left: '12vw',
@@ -162,6 +171,7 @@ const styles = theme => ({
     fontSize: '22px',
   },
   APITitleTablet: {
+    fontFamily: 'NanumSquare',
     position: 'absolute',
     top: '20vw',
     left: '14vw',
@@ -169,6 +179,7 @@ const styles = theme => ({
     fontSize: '2.2vw',
   },
   APIDetailTablet: {
+    fontFamily: 'NanumSquare',
     position: 'absolute',
     top: '24vw',
     left: '14vw',
@@ -321,6 +332,7 @@ const styles = theme => ({
     display: 'flex',
   },
   priceTitle: {
+    fontFamily: 'NanumSquare',
     paddingBottom: '15px',
     borderBottom: '6px double',
     fontStyle: 'italic',
@@ -328,12 +340,14 @@ const styles = theme => ({
     fontSize: '65px',
   },
   price: {
+    fontFamily: 'NanumSquare',
     marginLeft: '45%',
     fontStyle: 'italic',
     textShadow: `4px 4px 8px ${theme.palette.grey[600]}`,
     fontSize: '50px',
   },
   pricePhone: {
+    fontFamily: 'NanumSquare',
     fontSize: '40px',
     marginTop: '20px',
     marginBottom: '20px',
@@ -361,25 +375,32 @@ const styles = theme => ({
     display: 'none',
   },
   phoneTitle: {
+    fontFamily: 'NanumSquare',
     fontSize: "22px",
     fontWeight: "bold",
   },
   phoneDescription: {
+    lineHeight: '150%',
+    fontFamily: 'NanumSquare',
     fontSize: "16px",
   },
   tabletTitle: {
+    fontFamily: 'NanumSquare',
     fontSize: "1.8vw",
     fontWeight: "bold",
   },
   tabletDescription: {
+    fontFamily: 'NanumSquare',
     fontSize: "1.5vw",
     lineHeight: "200%"
   },
   desktopTitle: {
+    fontFamily: 'NanumSquare',
     fontSize: "28px",
     fontWeight: "bold"
   },
   desktopDescription: {
+    fontFamily: 'NanumSquare',
     fontSize: "21px",
     lineHeight: "200%"
   },
@@ -416,6 +437,7 @@ const styles = theme => ({
     borderBottom: `3px solid ${theme.palette.grey[300]}`,
   },
   loadingPage: {
+    fontFamily: 'NanumSquare',
     color: 'white',
     fontSize: "30px",
     width: '100%',
@@ -445,12 +467,10 @@ const styles = theme => ({
   },
 
   profileStepper: {
-
     width: '800px',
     marginLeft: '200px'
   },
 
-  /*Below are for LoginDialog*/
   dialog: {
     fullWidth: true,
     marginBottom: '20px',
