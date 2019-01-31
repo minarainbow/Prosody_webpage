@@ -3,11 +3,13 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles.js'
 import LoadingMessage from './LoadingMessage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Mypage from './routes/Mypage';
 import Home from './routes/Home';
-import MypageProfile from './routes/MypageProfile';
+import Mypage from './routes/Mypage';
+import MypageProfile from './routes/MypageProfile'
+import MypagePayment from './routes/MypagePayment.jsx';
 import API from './routes/API';
 import APIAbout from './routes/APIAbout';
+import APIOperation from './routes/APIOperation';
 
 class App extends Component {
   constructor(props) {
@@ -42,10 +44,10 @@ class App extends Component {
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/mypage" component={Mypage}></Route>
           <Route path="/mypage/profile" component={MypageProfile}></Route>
-          <Route path="/mypage/mailbox" component={MypageProfile}></Route>
+          <Route path="/mypage/payment" component={MypagePayment}></Route>
           <Route exact path="/api" component={API}></Route>
           <Route path="/api/about" component={APIAbout}></Route>
-          <Route path="/api/operation" component={API}></Route>
+          <Route path="/api/operation" component={APIOperation}></Route>
           <Route path="/api/f&q" component={API}></Route>
         </div>
       </Router>

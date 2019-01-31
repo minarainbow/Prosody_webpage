@@ -9,7 +9,6 @@ import logo from './images/logo.png';
 import MicBlend from './images/MicBlend.png';
 import { sections, APIfeatures, prices } from './scripts';
 import scrollToComponent from 'react-scroll-to-component';
-import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -23,7 +22,6 @@ class Desktop extends Component {
       containerZoom: false,
       featureZoom: { title: '', state: false },
       priceZoom: { title: '', state: false },
-      redirect: false,
       anchorEl: null,
       showModal: false,
     };
@@ -43,17 +41,13 @@ class Desktop extends Component {
     });
   }
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
+  handleIconClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
   };
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/' />
-    }
-  }
+  handleIconClose = () => {
+    this.setState({ anchorEl: null });
+  };
 
   containerMouseState = (classes) => {
     if (this.state.containerZoom) {
@@ -125,14 +119,6 @@ class Desktop extends Component {
     }
   };
 
-  handleClick = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
   showPriceDetail(price, classes) {
     if (this.state.priceZoom.state && price.title == this.state.priceZoom.title) {
       return (
@@ -175,13 +161,6 @@ class Desktop extends Component {
 
   render() {
     const { classes } = this.props;
-    const loggedIn = this.state.loggedIn
-      ? <div>
-        <p>You are signed in with: {this.state.loggedIn}</p>
-      </div>
-      : <div>
-        <p>You are signed out</p>
-      </div>;
 
     return (
       <React.Fragment>
@@ -193,15 +172,22 @@ class Desktop extends Component {
                 Desktop
               </div>
             </Button>
+            <Link to="/api" className={classes.toolbarAPI}>
+              <Button>
+                <div className={classes.APIButton} >
+                  API
+                </div>
+              </Button>
+            </Link>
             <div>
-              <IconButton color="action" onClick={this.handleClick}>
+              <IconButton color="action" onClick={this.handleIconClick}>
                 <PersonIcon className={classes.mypageIcon} />
               </IconButton>
               <Menu
                 id="simple-menu"
                 anchorEl={this.state.anchorEl}
                 open={Boolean(this.state.anchorEl)}
-                onClose={this.handleClose}
+                onClose={this.handleIconClose}
               >
                 <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
                   <MenuItem onClick={this.handleClose}>마이페이지</MenuItem>
@@ -212,7 +198,6 @@ class Desktop extends Component {
                 <MenuItem onClick={this.openModal}>로그인 / 회원가입</MenuItem>
               </Menu>
             </div>
-
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu}>
             {sections.map(section => (
@@ -228,7 +213,6 @@ class Desktop extends Component {
               onMouseEnter={(event) => this.containerMouseHandler(event, true)}
               onMouseLeave={(event) => this.containerMouseHandler(event, false)} >
               <img src={MicBlend} alt="MicBlend" className={this.containerMouseState(classes)} />
-
               <div className={classes.APITitle} >
                 맞춤형 목소리 합성 API
               </div>

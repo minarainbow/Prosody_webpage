@@ -18,14 +18,6 @@ import APIMenu from './APIMenu';
 
 class API extends Component {
 
-  state = {
-    selectedIndex: 0,
-  };
-
-  handleListItemClick = (event, index) => {
-    this.setState({ selectedIndex: index });
-  };
-
   render() {
     const { classes } = this.props;
 
@@ -33,7 +25,7 @@ class API extends Component {
       <React.Fragment>
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
-            <Link to="/" className={classes.toolbarTitleTablet}>
+            <Link to="/" className={classes.toolbarTitle}>
               <Button >
                 <img src={logo} className={classes.mainLogo} />
                 <div className={classes.logoTitle} >

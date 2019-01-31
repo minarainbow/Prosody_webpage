@@ -23,18 +23,6 @@ import APIMenu from './APIMenu';
 
 class APIAbout extends Component {
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    });
-  };
-
-  renderRedirect = () =>{
-    if(this.state.redirect){
-      return <Redirect to='/'/>
-    }
-  }
-
   render() {
     const {classes} = this.props;
 
@@ -42,7 +30,7 @@ class APIAbout extends Component {
       <React.Fragment>        
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
-            <Link to = "/"  className={classes.toolbarTitleTablet}>
+            <Link to = "/"  className={classes.toolbarTitle}>
               <Button >
                 <img src = {logo} className = {classes.mainLogo}/>
                 <div className={classes.logoTitle} >

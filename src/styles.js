@@ -28,14 +28,6 @@ const styles = theme => ({
     marginBottom: '3%',
   },
   toolbarTitle: {
-    display: 'flex',
-    width: '240px',
-    marginLeft: '2%',
-    marginRight: '78%',
-    textDecoration: 'none',
-    outline: 'none'
-  },
-  toolbarTitleTablet: {
     cursor: 'pointer',
     display: 'flex',
     marginLeft: '2%',

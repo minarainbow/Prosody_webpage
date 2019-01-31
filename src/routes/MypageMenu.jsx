@@ -26,13 +26,16 @@ const styles = theme => ({
 function MypageMenu(props) {
     const { classes } = props;
 
-    const state = {
+    let state = {
         selectedIndex: props.selectedIndex,
     };
 
     const handleListItemClick = (event, index) => {
         if (index != state.selectedIndex) {
-            state.selectedIndex = index;
+            console.log(index);
+            state = {
+                selectedIndex: index,
+            }
         }
     };
 
@@ -49,29 +52,15 @@ function MypageMenu(props) {
                     </ListItem>
                 </Link>
                 <Divider />
-                <ListItem
-                    button
-                    selected={state.selectedIndex === 1}
-                    onClick={event => handleListItemClick(event, 1)}
-                >
-                    <ListItemText primary="메일함" />
-                </ListItem>
-                <Divider />
-                <ListItem
-                    button
-                    selected={state.selectedIndex === 2}
-                    onClick={event => handleListItemClick(event, 2)}
-                >
-                    <ListItemText primary="더미" />
-                </ListItem>
-                <Divider />
-                <ListItem
-                    button
-                    selected={state.selectedIndex === 3}
-                    onClick={event => handleListItemClick(event, 3)}
-                >
-                    <ListItemText primary="더미2" />
-                </ListItem>
+                <Link to="/mypage/payment" style={{ textDecoration: 'none', outline: 'none', }}>
+                    <ListItem
+                        button
+                        selected={state.selectedIndex === 1}
+                        onClick={event => handleListItemClick(event, 1)}
+                    >
+                        <ListItemText primary="결제내역" />
+                    </ListItem>
+                </Link>
                 <Divider />
             </List>
         </div>

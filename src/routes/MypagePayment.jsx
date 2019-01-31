@@ -13,7 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles.js';
 import MypageMenu from './MypageMenu';
 
-class MypageProfile extends Component {
+class MypagePayment extends Component {
 
   state = {
     selectedIndex: 0,
@@ -96,11 +96,11 @@ class MypageProfile extends Component {
               </IconButton>
             </Link>
           </Toolbar>
-          <MypageMenu selectedIndex={0} />
+          <MypageMenu selectedIndex={1} />
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles)(MypageProfile);
+export default withStyles(styles)(MypagePayment);

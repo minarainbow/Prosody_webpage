@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
@@ -11,44 +11,50 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import logo from '../images/logo.png';
-import { sections, APIfeatures, prices } from '../scripts';
+import {sections, APIfeatures, prices} from '../scripts';
 import scrollToComponent from 'react-scroll-to-component';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles.js'
-import Login from '../LoginDialog.jsx';
-import MypageMenu from './MypageMenu';
+import SearchBar from 'material-ui-search-bar';
+import APITable from '../APITable';
+import APIMenu from './APIMenu';
 
-
-class Mypage extends Component {
+class APIOperation extends Component {
 
   render() {
-    const { classes } = this.props;
+    const {classes} = this.props;
 
     return (
-      <React.Fragment>
+      <React.Fragment>        
         <div className={classes.layout}>
           <Toolbar className={classes.toolbarMain}>
-            <Link to="/" className={classes.toolbarTitle}>
+            <Link to = "/"  className={classes.toolbarTitle}>
               <Button >
-                <img src={logo} className={classes.mainLogo} />
+                <img src = {logo} className = {classes.mainLogo}/>
                 <div className={classes.logoTitle} >
-                  Tablet
+                Tablet
                 </div>
               </Button>
             </Link>
+            <SearchBar
+                onChange={() => console.log('onChange')}
+                onRequestSearch={() => console.log('onRequestSearch')}
+                className={classes.searchBar}/>            
             <Link to="/">
-              <IconButton color="action">
-                <HomeIcon className={classes.mypageIcon} />
-              </IconButton>
+                <IconButton color="action">
+                    <HomeIcon  className={classes.mypageIcon} />
+                </IconButton>
             </Link>
           </Toolbar>
-          <MypageMenu />
+        <div style={{display: 'flex'}}>
+            <APIMenu selectedIndex={1}/>
+          </div>
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles)(Mypage);
+export default withStyles(styles) (APIOperation);
