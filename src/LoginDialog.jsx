@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import { timingSafeEqual } from 'crypto';
 
 export default class LoginDialog extends React.Component {
 
@@ -22,18 +23,19 @@ export default class LoginDialog extends React.Component {
       authError: null,
       initialTab: null,
       recoverPasswordSuccess: null,
+      registerSuccess: null,
     };
 
   }
 
-  showErrorMessage = () => {
-    if (this.state.nicknameError || this.state.emailError || this.state.passwordError || this.state.authError)
+  showAlertMessage = () => {
+    if (this.state.nicknameError || this.state.emailError || this.state.passwordError || this.state.authError || this.state.registerSuccess)
       return true;
     return false;
   };
 
 
-  errorMessage = () => {
+  alertMessage = () => {
     if (this.state.nicknameError) {
       return (
         <DialogContentText>닉네임을 입력해주세요</DialogContentText>
@@ -54,10 +56,15 @@ export default class LoginDialog extends React.Component {
         <DialogContentText>입력하신 정보가 정확하지 않습니다</DialogContentText>
       )
     }
+    else if (this.state.registerSuccess) {
+      return (
+        <DialogContentText>회원가입이 완료되었습니다</DialogContentText>
+      )
+    }
   };
 
   handleClose = () => {
-    this.setState({ nicknameError: false, emailError: false, passwordError: false, authError: false });
+    this.setState({ nicknameError: false, emailError: false, passwordError: false, authError: false, registerSuccess: false });
   };
 
   onLogin() {
@@ -114,9 +121,14 @@ export default class LoginDialog extends React.Component {
         confirm_password: password,
         email: email,
         password: password,
-      }).then(res => console.log('res:' + res))
-        .catch(err => console.log('err:' + err.response));
-      this.onLoginSuccess('form');
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      this.onRegisterSuccess('form');
     }
   }
 
@@ -148,6 +160,13 @@ export default class LoginDialog extends React.Component {
         showModal: true,
       })
     });
+  }
+
+  onRegisterSuccess(method, response) {
+    this.props.handler()
+    this.setState({
+      registerSuccess: true,
+    })
   }
 
   onLoginSuccess(method, response) {
@@ -313,11 +332,11 @@ export default class LoginDialog extends React.Component {
         />
         <Dialog
           id="simple-popper"
-          open={this.showErrorMessage()}
+          open={this.showAlertMessage()}
           onClose={this.handleClose}
         >
           <DialogContent>
-            {this.errorMessage()}
+            {this.alertMessage()}
             <DialogActions>
               <Button onClick={this.handleClose} autoFocus>
                 확인
