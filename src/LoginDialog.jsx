@@ -6,7 +6,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import { timingSafeEqual } from 'crypto';
 
 export default class LoginDialog extends React.Component {
 
@@ -17,54 +16,32 @@ export default class LoginDialog extends React.Component {
       showModal: false,
       loggedIn: null,
       loading: false,
-      nicknameError: null,
-      emailError: null,
-      passwordError: null,
-      authError: null,
       initialTab: null,
       recoverPasswordSuccess: null,
       registerSuccess: null,
+      showAlert: false,
+      alertMessage: null,
     };
 
   }
 
   showAlertMessage = () => {
-    if (this.state.nicknameError || this.state.emailError || this.state.passwordError || this.state.authError || this.state.registerSuccess)
+    if (this.state.showAlert || this.state.registerSuccess)
       return true;
     return false;
   };
 
 
   alertMessage = () => {
-    if (this.state.nicknameError) {
+    if(this.state.showAlert) {
       return (
-        <DialogContentText>닉네임을 입력해주세요</DialogContentText>
-      )
-    }
-    else if (this.state.emailError) {
-      return (
-        <DialogContentText>이메일을 입력해주세요</DialogContentText>
-      )
-    }
-    else if (this.state.passwordError) {
-      return (
-        <DialogContentText>비밀번호를 입력해주세요</DialogContentText>
-      )
-    }
-    else if (this.state.authError) {
-      return (
-        <DialogContentText>입력하신 정보가 정확하지 않습니다</DialogContentText>
-      )
-    }
-    else if (this.state.registerSuccess) {
-      return (
-        <DialogContentText>회원가입이 완료되었습니다</DialogContentText>
+        <DialogContentText>{this.state.alertMessage}</DialogContentText>
       )
     }
   };
 
   handleClose = () => {
-    this.setState({ nicknameError: false, emailError: false, passwordError: false, authError: false, registerSuccess: false });
+    this.setState({ showAlert: false, registerSuccess: false });
   };
 
   onLogin() {
@@ -94,42 +71,35 @@ export default class LoginDialog extends React.Component {
     console.log('__onRegister__');
     console.log('login: ' + document.querySelector('#login').value);
     console.log('email: ' + document.querySelector('#email').value);
-    console.log('password: ' + document.querySelector('#password').value);
+    console.log('password: ' + document.querySelector('#password').value);    
+    console.log('confirm_password: ' + document.querySelector('#confirm_password').value);
 
     const login = document.querySelector('#login').value;
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-    if (!login) {
-      this.setState({
-        nicknameError: true,
+    const confirm_password = document.querySelector('#confirm_password').value;
+    
+    console.log("here axios post");
+    axios.post('http://127.0.0.1:8000/ttsapi/users/', {
+      username: login,
+      confirm_password: password,
+      email: email,
+      password: password,
+      confirm_password: confirm_password,
+    })
+      .then((response) => {
+        this.onRegisterSuccess('form');
+        console.log(response);
       })
-    }
-    else if (!email) {
-      this.setState({
-        emailError: true,
-      })
-    }
-    else if (!password) {
-      this.setState({
-        passwordError: true,
-      })
-    }
-    else {
-      console.log("here axios post");
-      axios.post('http://127.0.0.1:8000/ttsapi/users/', {
-        username: login,
-        confirm_password: password,
-        email: email,
-        password: password,
-      })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      this.onRegisterSuccess('form');
-    }
+      .catch( (error) => {
+        console.log(error.response)
+        for (var key in error.response.data){
+          this.setState({
+            showAlert: true,
+            alertMessage: error.response.data[key]
+          })
+        }
+      });    
   }
 
   onRecoverPassword() {
@@ -163,10 +133,10 @@ export default class LoginDialog extends React.Component {
   }
 
   onRegisterSuccess(method, response) {
-    this.props.handler()
     this.setState({
       registerSuccess: true,
     })
+    this.props.handler()
   }
 
   onLoginSuccess(method, response) {
@@ -233,7 +203,7 @@ export default class LoginDialog extends React.Component {
     const isLoading = this.state.loading;
 
     return (
-      <div>
+      <div >
         <ReactModalLogin
           visible={this.props.showModal}
           onCloseModal={this.closeModal.bind(this)}
@@ -315,6 +285,15 @@ export default class LoginDialog extends React.Component {
                 id: 'password',
                 name: 'password',
                 placeholder: '비밀번호',
+              },
+              {
+                containerClass: 'RML-form-group',
+                label: '비밀번호 확인',
+                type: 'password',
+                inputClass: 'RML-form-control',
+                id: 'confirm_password',
+                name: 'confirm_password',
+                placeholder: '비밀번호 확인',
               }
             ],
             recoverPasswordInputs: [
@@ -338,7 +317,7 @@ export default class LoginDialog extends React.Component {
           <DialogContent>
             {this.alertMessage()}
             <DialogActions>
-              <Button onClick={this.handleClose} autoFocus>
+              <Button onClick={this.handleClose} autoFocus >
                 확인
               </Button>
             </DialogActions>
