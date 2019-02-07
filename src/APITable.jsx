@@ -17,11 +17,15 @@ const styles = theme => ({
     marginLeft: '4%',
     marginTop: '40px',
     width: '65%',
-    overflowX: 'auto',
+    overflowX: 'visible',
     display: 'block',
   },
-  table: {
-    minWidth: 700,
+  rootPhone: {
+    marginLeft: '10%',
+    marginTop: '40px',
+    width: '80%',
+    overflowX: 'visible',
+    display: 'block',
   },
   title: {
     marginLeft: '20px',
@@ -96,8 +100,12 @@ const data = [
 function APITable(props) {
   const { classes } = props;
 
+  const state = {
+    phone: props.phone,
+  };
+
   return (
-    <div className={classes.root}>
+    <div className={(state.phone? classes.rootPhone : classes.root) }>
       <div className={classes.title} >
         휴멜로 오픈 API 목록
         </div>
@@ -120,7 +128,7 @@ function APITable(props) {
                   <CustomTableCell component="th" scope="row" style={{ fontSize: '15px' }}>
                     {n.name}
                   </CustomTableCell>
-                  <CustomTableCell align="left" style={{ fontSize: '15px' }}>{n.explanation}</CustomTableCell>
+                  <CustomTableCell align="left" style={{ fontSize: '15px', width: '60%' }}>{n.explanation}</CustomTableCell>
                   <CustomTableCell align="left" style={{ fontSize: '15px' }}>{n.calls}</CustomTableCell>
                 </TableRow>
               );

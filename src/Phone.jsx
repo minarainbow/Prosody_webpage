@@ -38,6 +38,7 @@ class Phone extends Component {
       loggedIn: false,
       showAlert: false,
       alertMessage: null,
+      open: false,
     };
     this.handler = this.handler.bind(this);
   };
@@ -206,6 +207,7 @@ class Phone extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <React.Fragment>
         <div>
@@ -235,6 +237,21 @@ class Phone extends Component {
               <MenuIcon className={classes.mypageIcon} />
             </IconButton>
           </Toolbar>
+          <LoginDialog showModal={this.state.showModal} handler={this.handler} login={this.login} />
+          <Dialog
+            id="simple-popper"
+            open={this.showAlertMessage()}
+            onClose={this.handleClose}
+          >
+            <DialogContent>
+              {this.alertMessage()}
+              <DialogActions>
+                <Button onClick={this.handleClose} autoFocus >
+                  확인
+              </Button>
+              </DialogActions>
+            </DialogContent>
+          </Dialog>
           <main>
             <div style={{ display: "block" }}>
               <div className={classes.container}
