@@ -43,8 +43,14 @@ class Tablet extends Component {
   };
 
   logout = () => {
-    axios.defaults.headers.common = { 'Authorization': `Token ${localStorage.getItem('token')}` }
-    axios.post('http://127.0.0.1:8000/ttsapi/logout/')
+    let config = {
+      headers: { 'Authorization': "Token " + localStorage.getItem('token') }
+    };
+    // axios.defaults.headers.common = { 'Authorization': `Token ${localStorage.getItem('token')}` }
+    axios.post('http://127.0.0.1:8000/ttsapi/logout/',
+      null,
+      config,
+    )
       .then((response) => {
         console.log(response);
         this.setState({
