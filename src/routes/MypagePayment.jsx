@@ -3,15 +3,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import logo from '../images/logo.png';
-import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles.js';
 import MypageMenu from './MypageMenu';
+import MypagePricing from '../MypagePricing';
 
 class MypagePayment extends Component {
 
@@ -96,7 +93,10 @@ class MypagePayment extends Component {
               </IconButton>
             </Link>
           </Toolbar>
-          <MypageMenu selectedIndex={1} />
+          <div style={{ display: 'flex' }}>
+            <MypageMenu selectedIndex={1} />
+            <MypagePricing />
+          </div>
         </div>
       </React.Fragment>
     );
