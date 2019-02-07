@@ -13,6 +13,11 @@ import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LoginDialog from './LoginDialog';
+import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 class Tablet extends Component {
   constructor(props) {
@@ -23,22 +28,106 @@ class Tablet extends Component {
       priceZoom: { title: '', state: false },
       anchorEl: null,
       showModal: false,
+      loggedIn: false,
+      showAlert: false,
+      alertMessage: null,
     };
     this.handler = this.handler.bind(this);
-  }
+  };
+
+  login = () => {
+    this.setState({
+      loggedIn: true,
+      showModal: false,
+    })
+  };
+
+  logout = () => {
+    axios.defaults.headers.common = { 'Authorization': `Token ${localStorage.getItem('token')}` }
+    axios.post('http://127.0.0.1:8000/ttsapi/logout/')
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          loggedIn: false,
+          showModal: false,
+          anchorEl: null,
+          showAlert: true,
+          alertMessage: "로그아웃되었습니다",
+        })
+      })
+      .catch((error) => {
+        console.log(error.response)
+        this.setState({
+          showModal: false,
+          anchorEl: null,
+          alertMessage: "문제가 발생했습니다",
+        })
+      });
+  };
+
+  showAlertMessage = () => {
+    if (this.state.showAlert)
+      return true;
+    return false;
+  };
+
+
+  alertMessage = () => {
+    if (this.state.showAlert) {
+      console.log("show alertmessage")
+      return (
+        <DialogContentText>{this.state.alertMessage}</DialogContentText>
+      )
+    }
+  };
+
+  handleClose = () => {
+    console.log("hhee")
+    this.setState({ showAlert: false });
+  };
+
+  showProfileMenu = () => {
+    if (this.state.loggedIn) {
+      return (
+        <Menu
+          id="simple-menu"
+          anchorEl={this.state.anchorEl}
+          open={Boolean(this.state.anchorEl)}
+          onClose={this.handleIconClose}
+        >
+          <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
+            <MenuItem onClick={this.handleClose}>마이페이지</MenuItem>
+          </Link>
+          <MenuItem onClick={this.logout}>로그아웃</MenuItem>
+        </Menu>
+      )
+    }
+    else {
+      return (
+        <Menu
+          id="simple-menu"
+          anchorEl={this.state.anchorEl}
+          open={Boolean(this.state.anchorEl)}
+          onClose={this.handleIconClose}
+        >
+          <MenuItem onClick={this.openModal}>로그인 / 회원가입</MenuItem>
+        </Menu>
+      )
+    }
+  };
 
   handler = () => {
     this.setState({
       showModal: false,
     });
-  }
+  };
 
   openModal = () => {
     this.setState({
       showModal: true,
       anchorEl: null,
     });
-  }
+  };
 
   handleIconClick = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -183,20 +272,7 @@ class Tablet extends Component {
               <IconButton color="action" onClick={this.handleIconClick}>
                 <PersonIcon className={classes.mypageIcon} />
               </IconButton>
-              <Menu
-                id="simple-menu"
-                anchorEl={this.state.anchorEl}
-                open={Boolean(this.state.anchorEl)}
-                onClose={this.handleIconClose}
-              >
-                <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
-                  <MenuItem onClick={this.handleClose}>마이페이지</MenuItem>
-                </Link>
-                <Link to="/mypage" style={{ textDecoration: 'none', outline: 'none' }}>
-                  <MenuItem onClick={this.handleClose}>로그아웃</MenuItem>
-                </Link>
-                <MenuItem onClick={this.openModal}>로그인 / 회원가입</MenuItem>
-              </Menu>
+              {this.showProfileMenu()}
             </div>
           </Toolbar>
           <Toolbar variant="dense" className={classes.toolbarMenu} style={{ width: '40%' }}>
@@ -208,7 +284,21 @@ class Tablet extends Component {
               </Button>
             ))}
           </Toolbar>
-          <LoginDialog showModal={this.state.showModal} handler={this.handler} />
+          <LoginDialog showModal={this.state.showModal} handler={this.handler} login={this.login} />
+          <Dialog
+            id="simple-popper"
+            open={this.showAlertMessage()}
+            onClose={this.handleClose}
+          >
+            <DialogContent>
+              {this.alertMessage()}
+              <DialogActions>
+                <Button onClick={this.handleClose} autoFocus >
+                  확인
+              </Button>
+              </DialogActions>
+            </DialogContent>
+          </Dialog>
           <main>
             <div className={classes.container}
               onMouseEnter={(event) => this.containerMouseHandler(event, true)}

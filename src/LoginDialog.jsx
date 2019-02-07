@@ -18,7 +18,6 @@ export default class LoginDialog extends React.Component {
       loading: false,
       initialTab: null,
       recoverPasswordSuccess: null,
-      registerSuccess: null,
       showAlert: false,
       alertMessage: null,
     };
@@ -26,7 +25,7 @@ export default class LoginDialog extends React.Component {
   }
 
   showAlertMessage = () => {
-    if (this.state.showAlert || this.state.registerSuccess)
+    if (this.state.showAlert)
       return true;
     return false;
   };
@@ -41,55 +40,70 @@ export default class LoginDialog extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ showAlert: false, registerSuccess: false });
+    this.setState({ showAlert: false });
   };
 
   onLogin() {
     console.log('__onLogin__');
-    console.log('email: ' + document.querySelector('#email').value);
+    console.log('username: ' + document.querySelector('#username').value);
     console.log('password: ' + document.querySelector('#password').value);
 
-    const email = document.querySelector('#email').value;
+    const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
 
-    if (!email) {
-      this.setState({
-        emailError: true,
+    console.log("here login request");
+    axios.post('http://127.0.0.1:8000/ttsapi/login/', {
+      username: username,
+      password: password,
+    })
+      .then((response) => {
+        console.log(response);
+        this.props.login();
+        this.setState({
+          showAlert: true,
+          alertMessage: "로그인이 완료되었습니다",
+          loggedIn: true,
+        })
+        localStorage.setItem('token', response.data.token)
+        console.log('token saved is' + localStorage.getItem('token'))
       })
-    }
-    else if (!password) {
-      this.setState({
-        passwordError: true,
-      })
-    }
-    else {
-      this.onLoginSuccess('form');
-    }
+      .catch( (error) => {
+        console.log(error.response)
+        for (var key in error.response.data){
+          this.setState({
+            showAlert: true,
+            alertMessage: error.response.data[key]
+          })
+        }
+      });    
   }
 
   onRegister() {
     console.log('__onRegister__');
-    console.log('login: ' + document.querySelector('#login').value);
+    console.log('username: ' + document.querySelector('#username').value);
     console.log('email: ' + document.querySelector('#email').value);
     console.log('password: ' + document.querySelector('#password').value);    
     console.log('confirm_password: ' + document.querySelector('#confirm_password').value);
 
-    const login = document.querySelector('#login').value;
+    const username = document.querySelector('#username').value;
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
     const confirm_password = document.querySelector('#confirm_password').value;
     
     console.log("here axios post");
     axios.post('http://127.0.0.1:8000/ttsapi/users/', {
-      username: login,
+      username: username,
       confirm_password: password,
       email: email,
       password: password,
       confirm_password: confirm_password,
     })
       .then((response) => {
-        this.onRegisterSuccess('form');
         console.log(response);
+        this.setState({
+          showAlert: true,
+          alertMessage: '회원가입이 완료되었습니다'
+        })
       })
       .catch( (error) => {
         console.log(error.response)
@@ -130,36 +144,6 @@ export default class LoginDialog extends React.Component {
         showModal: true,
       })
     });
-  }
-
-  onRegisterSuccess(method, response) {
-    this.setState({
-      registerSuccess: true,
-    })
-    this.props.handler()
-  }
-
-  onLoginSuccess(method, response) {
-    this.closeModal();
-    this.setState({
-      loggedIn: method,
-      loading: false,
-    })
-  }
-
-  onLoginFail(method, response) {
-    if (response) {
-      this.setState({
-        loading: false,
-        authError: true,
-      })
-    }
-    else {
-      this.setState({
-        loading: false,
-      })
-      this.handleClose();
-    }
   }
 
   startLoading() {
@@ -241,12 +225,12 @@ export default class LoginDialog extends React.Component {
             loginInputs: [
               {
                 containerClass: 'RML-form-group',
-                label: '이메일',
-                type: 'email',
+                label: '닉네임',
+                type: 'username',
                 inputClass: 'RML-form-control',
-                id: 'email',
-                name: 'email',
-                placeholder: '이메일',
+                id: 'username',
+                name: 'username',
+                placeholder: '닉네임',
               },
               {
                 containerClass: 'RML-form-group',
@@ -264,8 +248,8 @@ export default class LoginDialog extends React.Component {
                 label: '닉네임',
                 type: 'text',
                 inputClass: 'RML-form-control',
-                id: 'login',
-                name: 'login',
+                id: 'username',
+                name: 'username',
                 placeholder: '닉네임',
               },
               {
