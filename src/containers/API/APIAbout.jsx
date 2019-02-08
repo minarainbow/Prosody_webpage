@@ -3,25 +3,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import logo from '../images/logo.png';
-import {sections, APIfeatures, prices} from '../scripts';
-import scrollToComponent from 'react-scroll-to-component';
-import {Redirect} from 'react-router-dom';
+import logo from '../../images/logo.png';
 import {Link} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import styles from '../styles.js'
+import styles from '../../styles.js'
 import SearchBar from 'material-ui-search-bar';
-import APITable from '../APITable';
-import APIMenu from './APIMenu';
+import APITable from '../../components/APITable';
+import APIMenu from '../../components/APIMenu';
 
-class APIOperation extends Component {
+class APIAbout extends Component {
 
   render() {
     const {classes} = this.props;
@@ -49,7 +39,8 @@ class APIOperation extends Component {
             </Link>
           </Toolbar>
         <div style={{display: 'flex'}}>
-            <APIMenu selectedIndex={1}/>
+            <APIMenu selectedIndex={0}/>
+            <APITable />
           </div>
         </div>
       </React.Fragment>
@@ -57,4 +48,4 @@ class APIOperation extends Component {
   }
 }
 
-export default withStyles(styles) (APIOperation);
+export default withStyles(styles) (APIAbout);

@@ -19,7 +19,7 @@ const styles = theme => ({
     textDecoration: 'none',
     outline: 'none',
   },
-  toolbarMainPhone: {
+  toolbarMainMobile: {
     width: 'auto',
     marginTop: '3%',
     marginLeft: '3%',
@@ -35,7 +35,7 @@ const styles = theme => ({
     textDecoration: 'none',
     outline: 'none',
   },
-  toolbarTitlePhone: {
+  toolbarTitleMobile: {
     display: 'flex',
     width: '160px',
     marginLeft: '1px',
@@ -73,7 +73,7 @@ const styles = theme => ({
     width: '50px',
     marginRight: '10px',
   },
-  mainLogoPhone: {
+  mainLogoMobile: {
     height: '40px',
     width: '40px',
     marginRight: '10px',
@@ -82,7 +82,7 @@ const styles = theme => ({
     fontFamily: 'NanumSquare',
     fontSize: '30px',
   },
-  logoTitlePhone: {
+  logoTitleMobile: {
     fontFamily: 'NanumSquare',
     fontSize: '24px',
   },
@@ -133,7 +133,7 @@ const styles = theme => ({
     width: '100%',
     display: 'flex',
   },
-  featureContainerPhone: {
+  featureContainerMobile: {
     paddingLeft: '10%',
     paddingRight: '10%',
     width: '80%',
@@ -146,7 +146,7 @@ const styles = theme => ({
     fontSize: '2.1vw',
     fontWeight: 'bold',
   },
-  keySentencePhone: {
+  keySentenceMobile: {
     fontFamily: 'NanumSquare',
     marginTop: '6%',
     marginBottom: '6%',
@@ -300,7 +300,7 @@ const styles = theme => ({
       duration: 3 * theme.transitions.duration.leavingScreen,
     }),
   },
-  cardBasicPhone: {
+  cardBasicMobile: {
     paddingLeft: '3%',
     paddingRight: '3%',
     marginLeft: '30%',
@@ -312,7 +312,7 @@ const styles = theme => ({
     border: `3px solid ${theme.palette.grey[200]}`,
     boxShadow: `8px 8px 8px ${theme.palette.grey[200]}`,
   },
-  cardProPhone: {
+  cardProMobile: {
     position: 'relative',
     top: '-30%',
     left: '10%',
@@ -346,7 +346,7 @@ const styles = theme => ({
     textShadow: `4px 4px 8px ${theme.palette.grey[600]}`,
     fontSize: '50px',
   },
-  pricePhone: {
+  priceMobile: {
     fontFamily: 'NanumSquare',
     fontSize: '40px',
     marginTop: '20px',
@@ -428,7 +428,7 @@ const styles = theme => ({
     paddingRight: '12%',
     borderRight: `3px solid ${theme.palette.grey[300]}`,
   },
-  featureDividerPhone: {
+  featureDividerMobile: {
     paddingTop: "2.4vw",
     paddingBottom: "3.2vw",
     marginLeft: "25%",

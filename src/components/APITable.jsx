@@ -19,7 +19,7 @@ const styles = theme => ({
     overflowX: 'visible',
     display: 'block',
   },
-  rootPhone: {
+  rootMobile: {
     marginLeft: '10%',
     marginTop: '40px',
     width: '80%',
@@ -104,7 +104,7 @@ function APITable(props) {
   };
 
   return (
-    <div className={(state.phone? classes.rootPhone : classes.root) }>
+    <div className={(state.phone? classes.rootMobile : classes.root) }>
       <div className={classes.title} >
         휴멜로 오픈 API 목록
         </div>

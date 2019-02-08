@@ -5,23 +5,21 @@ import PersonIcon from '@material-ui/icons/Person';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-import logo from './images/logo.png';
-import MicBlend from './images/MicBlend.png';
-import { sections, APIfeatures, prices } from './scripts';
+import logo from '../../images/logo.png';
+import MicBlend from '../../images/MicBlend.png';
+import { sections, APIfeatures, prices } from '../../scripts';
 import scrollToComponent from 'react-scroll-to-component';
 import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import LoginDialog from './LoginDialog';
+import LoginDialog from '../../components/LoginDialog';
 import axios from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-
-
-class Desktop extends Component {
+class HomeTablet extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +28,9 @@ class Desktop extends Component {
       priceZoom: { title: '', state: false },
       anchorEl: null,
       showModal: false,
+      loggedIn: false,
+      showAlert: false,
+      alertMessage: null,
     };
     this.handler = this.handler.bind(this);
   };
@@ -45,6 +46,7 @@ class Desktop extends Component {
     let config = {
       headers: { 'Authorization': "Token " + localStorage.getItem('token') }
     };
+    // axios.defaults.headers.common = { 'Authorization': `Token ${localStorage.getItem('token')}` }
     axios.post('http://127.0.0.1:8000/ttsapi/logout/',
       null,
       config,
@@ -124,14 +126,14 @@ class Desktop extends Component {
     this.setState({
       showModal: false,
     });
-  }
+  };
 
   openModal = () => {
     this.setState({
       showModal: true,
       anchorEl: null,
     });
-  }
+  };
 
   handleIconClick = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -149,7 +151,6 @@ class Desktop extends Component {
   };
 
   featureMouseState = (classes, title) => {
-
     if (this.state.featureZoom.state && title == this.state.featureZoom.title) {
       return classes.featureZoomImage;
     }
@@ -214,16 +215,16 @@ class Desktop extends Component {
   showPriceDetail(price, classes) {
     if (this.state.priceZoom.state && price.title == this.state.priceZoom.title) {
       return (
-        <div style={{ marginBottom: '-30%' }}>
+        <div >
           <div className={classes.cardDetails}>
-            <div className={classes.priceTitle} style={{ fontSize: '80px' }}>
+            <div className={classes.priceTitle} style={{ fontSize: '70px', marginRight: '-20%' }}>
               {price.title}
             </div>
-            <div className={classes.price}>
+            <div className={classes.price} style={{ fontSize: '40px' }}>
               {this.state.priceZoom.state && price.title == this.state.priceZoom.title ? price.price : null}
             </div>
           </div>
-          <div className={classes.desktopDescription} style={{ marginTop: '5%', marginLeft: '3%', width: '620px' }}>
+          <div className={classes.tabletDescription} style={{ marginTop: '5%', marginLeft: '3%', width: '40vw' }}>
             {price.description}
           </div>
         </div>)
@@ -231,7 +232,7 @@ class Desktop extends Component {
     else {
       return (
         <div className={classes.cardDetails}>
-          <div className={classes.priceTitle}>
+          <div className={classes.priceTitle} style={{ fontSize: '50px' }}>
             {price.title}
           </div>
           <div className={classes.price}>
@@ -256,14 +257,16 @@ class Desktop extends Component {
 
     return (
       <React.Fragment>
-        <div className={classes.layout}>
+        <div >
           <Toolbar className={classes.toolbarMain}>
-            <Button color="inherit" className={classes.toolbarTitle}>
-              <img src={logo} className={classes.mainLogo} />
-              <div className={classes.logoTitle} >
-                Desktop
-              </div>
-            </Button>
+            <Link to="/" className={classes.toolbarTitle}>
+              <Button >
+                <img src={logo} className={classes.mainLogo} />
+                <div className={classes.logoTitle} >
+                  Tablet
+                </div>
+              </Button>
+            </Link>
             <Link to="/api" className={classes.toolbarAPI}>
               <Button>
                 <div className={classes.APIButton} >
@@ -278,24 +281,39 @@ class Desktop extends Component {
               {this.showProfileMenu()}
             </div>
           </Toolbar>
-          <Toolbar variant="dense" className={classes.toolbarMenu}>
+          <Toolbar variant="dense" className={classes.toolbarMenu} style={{ width: '40%' }}>
             {sections.map(section => (
-              <Button color="inherit" style={{ fontSize: '20px', width: '30%' }} key={section}
+              <Button color="inherit"
+                style={{ fontSize: '18px' }} key={section}
                 onClick={() => this.scrollToDiv(section.title)}>
                 {section.title}
               </Button>
             ))}
           </Toolbar>
           <LoginDialog showModal={this.state.showModal} handler={this.handler} login={this.login} />
+          <Dialog
+            id="simple-popper"
+            open={this.showAlertMessage()}
+            onClose={this.handleClose}
+          >
+            <DialogContent>
+              {this.alertMessage()}
+              <DialogActions>
+                <Button onClick={this.handleClose} autoFocus >
+                  확인
+              </Button>
+              </DialogActions>
+            </DialogContent>
+          </Dialog>
           <main>
             <div className={classes.container}
               onMouseEnter={(event) => this.containerMouseHandler(event, true)}
-              onMouseLeave={(event) => this.containerMouseHandler(event, false)} >
-              <img src={MicBlend} alt="MicBlend" className={this.containerMouseState(classes)} />
-              <div className={classes.APITitle} >
+              onMouseLeave={(event) => this.containerMouseHandler(event, false)}>
+              <img src={MicBlend} alt="MicBlend" width="100%" className={this.containerMouseState(classes)} />
+              <div className={classes.APITitleTablet} >
                 맞춤형 목소리 합성 API
               </div>
-              <div className={classes.APIDetail} >
+              <div className={classes.APIDetailTablet} >
                 사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
                 IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
                 풍부한 감정을 가지고 말하는 인공지능을 만나보세요
@@ -304,31 +322,31 @@ class Desktop extends Component {
             <div
               className={classes.keySentence}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
-            <div className={classes.featureContainer} ref={(section) => { this.featureContainer = section; }}>
+            <div className={classes.featureContainerTablet} ref={(section) => { this.featureContainer = section; }}>
               {APIfeatures.map(feature => (
-                <div className={classes.feature}
+                <div className={classes.featureTablet}
                   onMouseEnter={(event) => this.featureMouseHandler(event, true, feature.title)}
-                  onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)} >
+                  onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)}>
                   <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)} className={this.featureMouseState(classes, feature.title)} />
-                  <div className={classes.desktopTitle}>
+                  <div className={classes.tabletTitle}>
                     {feature.title}
                   </div><br />
-                  <div className={classes.desktopDescription}>
-                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
+                  <div className={classes.tabletDescription}>
+                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
                   </div>
                 </div>
               ))}
             </div>
             <div
               className={classes.keySentence}
-              align="center" >가격 정책<br />
+              align="center">가격 정책<br />
             </div>
             <Grid container className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
               {prices.map(price => (
                 <Grid item key={price.title} xs={12} md={6}
                   onMouseEnter={(event) => this.priceMouseHandler(event, true, price.title)}
                   onMouseLeave={(event) => this.priceMouseHandler(event, false, price.title)}>
-                  <Card className={this.priceMouseState(classes, price.title)} >
+                  <Card className={this.priceMouseState(classes, price.title)} style={{ height: '240px' }} >
                     {this.showPriceDetail(price, classes)}
                   </Card>
                 </Grid>
@@ -341,4 +359,4 @@ class Desktop extends Component {
   }
 }
 
-export default Desktop;
+export default HomeTablet;

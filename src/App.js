@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles.js'
-import LoadingMessage from './LoadingMessage';
+import LoadingMessage from './containers/LoadingMessage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './routes/Home';
-import Mypage from './routes/Mypage';
-import MypageProfile from './routes/MypageProfile'
-import MypagePayment from './routes/MypagePayment.jsx';
-import API from './routes/API';
-import APIAbout from './routes/APIAbout';
-import APIOperation from './routes/APIOperation';
+import Home from './containers/Home/Home';
+import Mypage from './containers/Mypage/Mypage';
+import MypageProfile from './containers/Mypage/MypageProfile'
+import MypagePayment from './containers/Mypage/MypagePayment';
+import API from './containers/API/API';
+import APIAbout from './containers/API/APIAbout';
+import APIOperation from './containers/API/APIOperation';
 
 class App extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class App extends Component {
           <Route path="/mypage/profile" component={MypageProfile}></Route>
           <Route path="/mypage/payment" component={MypagePayment}></Route>
           <Route exact path="/api" component={API}></Route>
-          <Route path="/api/about" component={API}></Route>
+          <Route path="/api/about" component={APIAbout}></Route>
           <Route path="/api/operation" component={APIOperation}></Route>
           <Route path="/api/f&q" component={API}></Route>
         </div>

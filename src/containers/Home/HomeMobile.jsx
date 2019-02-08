@@ -4,22 +4,29 @@ import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import logo from './images/logo.png';
-import MicBlend from './images/MicBlend.png';
-import { sections, APIfeatures, prices } from './scripts';
+import Divider from '@material-ui/core/Divider';
+import logo from '../../images/logo.png';
+import MicBlend from '../../images/MicBlend.png';
+import { sections, APIfeatures, prices } from '../../scripts';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/icons/Menu';
+import classNames from 'classnames';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import scrollToComponent from 'react-scroll-to-component';
 import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import LoginDialog from './LoginDialog';
+import LoginDialog from '../../components/LoginDialog';
 import axios from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-class Tablet extends Component {
+
+class HomeMobile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +38,7 @@ class Tablet extends Component {
       loggedIn: false,
       showAlert: false,
       alertMessage: null,
+      open: false,
     };
     this.handler = this.handler.bind(this);
   };
@@ -46,7 +54,6 @@ class Tablet extends Component {
     let config = {
       headers: { 'Authorization': "Token " + localStorage.getItem('token') }
     };
-    // axios.defaults.headers.common = { 'Authorization': `Token ${localStorage.getItem('token')}` }
     axios.post('http://127.0.0.1:8000/ttsapi/logout/',
       null,
       config,
@@ -150,49 +157,25 @@ class Tablet extends Component {
     return classes.defaultImage;
   };
 
-  featureMouseState = (classes, title) => {
-    if (this.state.featureZoom.state && title == this.state.featureZoom.title) {
-      return classes.featureZoomImage;
-    }
-    if (!this.state.featureZoom.state)
-      return this.divideFeatures(title, classes);
-  };
-
-  priceMouseState = (classes, title) => {
-    if (this.state.priceZoom.state) {
-      if (title == this.state.priceZoom.title) {
-        if (title == 'Basic')
-          return classes.cardZoomInBasic;
-        return classes.cardZoomInPro;
-      }
-      else {
-        if (title == 'Basic')
-          return classes.cardZoomOutBasic;
-        return classes.cardZoomOutPro;
-      }
-    }
-    return this.getPriceClass(title, classes);
-  };
-
   containerMouseHandler = (event, bool) => {
     this.setState({ containerZoom: bool });
   };
 
-  featureMouseHandler = (event, bool, title) => {
-    this.setState({ featureZoom: { title: title, state: bool } });
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
   };
-
-  priceMouseHandler = (event, bool, title) => {
-    this.setState({ priceZoom: { title: title, state: bool } });
+  handleDrawerClose = () => {
+    this.setState({ open: false });
   };
 
   scrollToDiv = (title) => {
+    this.handleDrawerClose();
     switch (title) {
       case 'API 개요':
-        scrollToComponent(this.featureContainer);
+        scrollToComponent(this.featureContainerMobile);
         break;
       case '다운로드':
-        scrollToComponent(this.featureContainer);
+        scrollToComponent(this.featureContainerMobile);
         break;
       case '가격정책':
         scrollToComponent(this.priceContainer);
@@ -206,39 +189,9 @@ class Tablet extends Component {
   getPriceClass = (title, classes) => {
     switch (title) {
       case 'Basic':
-        return classes.cardBasic;
+        return classes.cardBasicMobile;
       case 'Pro':
-        return classes.cardPro;
-    }
-  };
-
-  showPriceDetail(price, classes) {
-    if (this.state.priceZoom.state && price.title == this.state.priceZoom.title) {
-      return (
-        <div >
-          <div className={classes.cardDetails}>
-            <div className={classes.priceTitle} style={{ fontSize: '70px', marginRight: '-20%' }}>
-              {price.title}
-            </div>
-            <div className={classes.price} style={{ fontSize: '40px' }}>
-              {this.state.priceZoom.state && price.title == this.state.priceZoom.title ? price.price : null}
-            </div>
-          </div>
-          <div className={classes.tabletDescription} style={{ marginTop: '5%', marginLeft: '3%', width: '40vw' }}>
-            {price.description}
-          </div>
-        </div>)
-    }
-    else {
-      return (
-        <div className={classes.cardDetails}>
-          <div className={classes.priceTitle} style={{ fontSize: '50px' }}>
-            {price.title}
-          </div>
-          <div className={classes.price}>
-            {this.state.priceZoom.state && price.title == this.state.priceZoom.title ? price.price : null}
-          </div>
-        </div>);
+        return classes.cardProMobile;
     }
   };
 
@@ -246,27 +199,25 @@ class Tablet extends Component {
     switch (title) {
       case '감정조절':
       case '커스터마이징':
-        return classes.featureDivider;
+        return classes.featureDividerMobile;
       case '다국어 지원':
         return;
     }
-  };
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <React.Fragment>
-        <div >
-          <Toolbar className={classes.toolbarMain}>
-            <Link to="/" className={classes.toolbarTitle}>
-              <Button >
-                <img src={logo} className={classes.mainLogo} />
-                <div className={classes.logoTitle} >
-                  Tablet
-                </div>
-              </Button>
-            </Link>
+        <div>
+          <Toolbar className={classes.toolbarMainMobile}>
+            <Button color="inherit" className={classes.toolbarTitleMobile} >
+              <img src={logo} className={classes.mainLogoMobile} />
+              <div className={classes.logoTitleMobile} >
+                Mobile
+              </div>
+            </Button>
             <Link to="/api" className={classes.toolbarAPI}>
               <Button>
                 <div className={classes.APIButton} >
@@ -280,15 +231,11 @@ class Tablet extends Component {
               </IconButton>
               {this.showProfileMenu()}
             </div>
-          </Toolbar>
-          <Toolbar variant="dense" className={classes.toolbarMenu} style={{ width: '40%' }}>
-            {sections.map(section => (
-              <Button color="inherit"
-                style={{ fontSize: '18px' }} key={section}
-                onClick={() => this.scrollToDiv(section.title)}>
-                {section.title}
-              </Button>
-            ))}
+            <IconButton
+              aria-label="Open drawer"
+              onClick={this.handleDrawerOpen}>
+              <MenuIcon className={classes.mypageIcon} />
+            </IconButton>
           </Toolbar>
           <LoginDialog showModal={this.state.showModal} handler={this.handler} login={this.login} />
           <Dialog
@@ -306,48 +253,77 @@ class Tablet extends Component {
             </DialogContent>
           </Dialog>
           <main>
-            <div className={classes.container}
-              onMouseEnter={(event) => this.containerMouseHandler(event, true)}
-              onMouseLeave={(event) => this.containerMouseHandler(event, false)}>
-              <img src={MicBlend} alt="MicBlend" width="100%" className={this.containerMouseState(classes)} />
-              <div className={classes.APITitleTablet} >
-                맞춤형 목소리 합성 API
+            <div style={{ display: "block" }}>
+              <div className={classes.container}
+                onMouseEnter={(event) => this.containerMouseHandler(event, true)}
+                onMouseLeave={(event) => this.containerMouseHandler(event, false)} >
+                <img src={MicBlend} alt="MicBlend" className={this.containerMouseState(classes)} />
               </div>
-              <div className={classes.APIDetailTablet} >
-                사람의 감정을 담아서 말할 수 있는 자연스러운 TTS API는<br />
-                IoT, 게임, 어플리케이션 등의 다양한 분야에서 사용될 수 있습니다<br /><br />
-                풍부한 감정을 가지고 말하는 인공지능을 만나보세요
-              </div>
+              <Drawer
+                classes={{
+                  paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+                }}
+                open={this.state.open} anchor="right" >
+                <div>
+                  <IconButton onClick={this.handleDrawerClose}>
+                    <ChevronRightIcon />
+                  </IconButton>
+                </div>
+                <Divider />
+                {sections.map(section => (
+                  <div >
+                    <Button color="inherit" style={{ fontSize: '18px', width: '100%', paddingTop: '15%', paddingBottom: '15%' }} key={section}
+                      onClick={() => this.scrollToDiv(section.title)}>
+                      <section.icon color="action" style={{ position: 'absolute', left: '15px', fontSize: '30px', paddingRight: '10px' }} />
+                      <div style={{ position: 'absolute', left: '60px' }}>
+                        {section.title}
+                      </div>
+                    </Button>
+                  </div>
+                ))}
+              </Drawer>
             </div>
             <div
-              className={classes.keySentence}
+              className={classes.keySentenceMobile}
               align="center">Humelo TTS는 무엇이 다른가요?<br /></div>
-            <div className={classes.featureContainerTablet} ref={(section) => { this.featureContainer = section; }}>
+            <div className={classes.featureContainerMobile} ref={(section) => { this.featureContainerMobile = section; }}>
               {APIfeatures.map(feature => (
-                <div className={classes.featureTablet}
-                  onMouseEnter={(event) => this.featureMouseHandler(event, true, feature.title)}
-                  onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)}>
-                  <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)} className={this.featureMouseState(classes, feature.title)} />
-                  <div className={classes.tabletTitle}>
+                <div>
+                  <img src={feature.image} width="60%" />
+                  <div className={classes.phoneTitle}>
                     {feature.title}
                   </div><br />
-                  <div className={classes.tabletDescription}>
-                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
+                  <div className={classes.phoneDescription}>
+                    {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
+                    <div className={this.divideFeatures(feature.title, classes)}></div>
                   </div>
                 </div>
+
               ))}
             </div>
             <div
-              className={classes.keySentence}
+              className={classes.keySentenceMobile} style={{ marginTop: "250px" }}
               align="center">가격 정책<br />
             </div>
             <Grid container className={classes.priceContainer} ref={(section) => { this.priceContainer = section; }}>
               {prices.map(price => (
-                <Grid item key={price.title} xs={12} md={6}
-                  onMouseEnter={(event) => this.priceMouseHandler(event, true, price.title)}
-                  onMouseLeave={(event) => this.priceMouseHandler(event, false, price.title)}>
-                  <Card className={this.priceMouseState(classes, price.title)} style={{ height: '240px' }} >
-                    {this.showPriceDetail(price, classes)}
+                <Grid item key={price.title} xs={12} md={0}>
+                  <Card className={this.getPriceClass(price.title, classes)}>
+                    <div className={classes.cardDetails} style={{ height: '9vw' }}>
+                      <CardContent>
+                        <div style={{ display: 'flex', marginRight: '20px' }}>
+                          <div className={classes.priceTitle} style={{ fontSize: '40px', borderBottom: '0px' }}>
+                            {price.title}
+                          </div>
+                          <div className={classes.price} style={{ fontSize: '25px', marginTop: '8px' }}>
+                            {price.price}
+                          </div>
+                        </div>
+                        <div className={classes.phoneDescription} style={{ marginTop: '20px' }}>
+                          {price.description}
+                        </div>
+                      </CardContent>
+                    </div>
                   </Card>
                 </Grid>
               ))}
@@ -359,4 +335,4 @@ class Tablet extends Component {
   }
 }
 
-export default Tablet;
+export default HomeMobile;

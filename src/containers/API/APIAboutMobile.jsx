@@ -3,18 +3,18 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import styles from '../styles.js'
+import styles from '../../styles.js'
 import SearchBar from 'material-ui-search-bar';
-import APITable from '../APITable';
+import APITable from '../../components/APITable';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import classNames from 'classnames';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
-import { APImenu } from '../scripts';
+import { APImenu } from '../../scripts';
 
 class APIAbout extends Component {
 
@@ -39,11 +39,11 @@ class APIAbout extends Component {
             <React.Fragment>
                 <div className={classes.layout}>
                     <Toolbar className={classes.toolbarMain}>
-                        <Link to="/" className={classes.toolbarTitlePhone}>
+                        <Link to="/" className={classes.toolbarTitleMobile}>
                             <Button >
-                                <img src={logo} className={classes.mainLogoPhone} />
-                                <div className={classes.logoTitlePhone} >
-                                    Phone
+                                <img src={logo} className={classes.mainLogoMobile} />
+                                <div className={classes.logoTitleMobile} >
+                                    Mobile
                                 </div>
                             </Button>
                         </Link>

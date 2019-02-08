@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import styles from './styles.js'
+import styles from '../styles.js'
 import ReactLoading from 'react-loading';
 
 

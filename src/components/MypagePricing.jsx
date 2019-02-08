@@ -107,7 +107,7 @@ const tiers = [
             '50 users included',
             '30 GB of storage',
             'Help center access',
-            'Phone & email support',
+            'Mobile & email support',
         ],
         buttonText: 'Contact us',
         buttonVariant: 'outlined',
