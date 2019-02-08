@@ -15,7 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import LoginDialog from '../../components/LoginDialog';
 import axios from 'axios';
 import DialogContentText from '@material-ui/core/DialogContentText';
-
+import { withStyles } from '@material-ui/core/styles';
 
 
 class HomeDesktop extends Component {
@@ -220,7 +220,7 @@ class HomeDesktop extends Component {
               {this.state.priceZoom.state && price.title == this.state.priceZoom.title ? price.price : null}
             </div>
           </div>
-          <div className={classes.desktopDescription} style={{ marginTop: '5%', marginLeft: '3%', width: '620px' }}>
+          <div className={classes.descriptionDesktop} style={{ marginTop: '5%', marginLeft: '3%', width: '620px' }}>
             {price.description}
           </div>
         </div>)
@@ -270,7 +270,7 @@ class HomeDesktop extends Component {
             </Link>
             <div>
               <IconButton color="action" onClick={this.handleIconClick}>
-                <PersonIcon className={classes.mypageIcon} />
+                <PersonIcon className={classes.defaultIcon} />
               </IconButton>
               {this.showProfileMenu()}
             </div>
@@ -307,10 +307,10 @@ class HomeDesktop extends Component {
                   onMouseEnter={(event) => this.featureMouseHandler(event, true, feature.title)}
                   onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)} >
                   <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)} className={this.featureMouseState(classes, feature.title)} />
-                  <div className={classes.desktopTitle}>
+                  <div className={classes.titleDesktop}>
                     {feature.title}
                   </div><br />
-                  <div className={classes.desktopDescription}>
+                  <div className={classes.descriptionDesktop}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
                   </div>
                 </div>

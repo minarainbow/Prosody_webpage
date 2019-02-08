@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import logo from '../../images/logo.png';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import styles from '../../styles.js'
 import SearchBar from 'material-ui-search-bar';
 import APITable from '../../components/APITable';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -16,7 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
 import { APImenu } from '../../scripts';
 
-class APIAbout extends Component {
+class APIAboutMobile extends Component {
 
     constructor(props) {
         super(props);
@@ -53,13 +52,13 @@ class APIAbout extends Component {
                             className={classes.searchBar} />
                         <Link to="/">
                             <IconButton color="action">
-                                <HomeIcon className={classes.mypageIcon} />
+                                <HomeIcon className={classes.defaultIcon} />
                             </IconButton>
                         </Link>
                         <IconButton
                             aria-label="Open drawer"
                             onClick={this.handleDrawerOpen}>
-                            <MenuIcon className={classes.mypageIcon} />
+                            <MenuIcon className={classes.defaultIcon} />
                         </IconButton>
                     </Toolbar>
                     <Drawer
@@ -85,11 +84,11 @@ class APIAbout extends Component {
                             </div>
                         ))}
                     </Drawer>
-                    <APITable phone={true} />
+                    <APITable mobile={true} />
                 </div>
             </React.Fragment>
         );
     }
 }
 
-export default withStyles(styles)(APIAbout);
+export default APIAboutMobile;

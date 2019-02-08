@@ -227,14 +227,14 @@ class HomeMobile extends Component {
             </Link>
             <div>
               <IconButton color="action" onClick={this.handleIconClick}>
-                <PersonIcon className={classes.mypageIcon} />
+                <PersonIcon className={classes.defaultIcon} />
               </IconButton>
               {this.showProfileMenu()}
             </div>
             <IconButton
               aria-label="Open drawer"
               onClick={this.handleDrawerOpen}>
-              <MenuIcon className={classes.mypageIcon} />
+              <MenuIcon className={classes.defaultIcon} />
             </IconButton>
           </Toolbar>
           <LoginDialog showModal={this.state.showModal} handler={this.handler} login={this.login} />
@@ -290,10 +290,10 @@ class HomeMobile extends Component {
               {APIfeatures.map(feature => (
                 <div>
                   <img src={feature.image} width="60%" />
-                  <div className={classes.phoneTitle}>
+                  <div className={classes.titleMobile}>
                     {feature.title}
                   </div><br />
-                  <div className={classes.phoneDescription}>
+                  <div className={classes.descriptionMobile}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}
                     <div className={this.divideFeatures(feature.title, classes)}></div>
                   </div>
@@ -319,7 +319,7 @@ class HomeMobile extends Component {
                             {price.price}
                           </div>
                         </div>
-                        <div className={classes.phoneDescription} style={{ marginTop: '20px' }}>
+                        <div className={classes.descriptionMobile} style={{ marginTop: '20px' }}>
                           {price.description}
                         </div>
                       </CardContent>

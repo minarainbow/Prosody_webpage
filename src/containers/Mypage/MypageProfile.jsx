@@ -6,8 +6,70 @@ import Button from '@material-ui/core/Button';
 import logo from '../../images/logo.png';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import styles from '../../styles.js';
 import MypageMenu from '../../components/MypageMenu';
+
+
+const styles = theme => ({
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+      width: '100%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  toolbarMain: {
+    width: 'auto',
+    marginTop: '3%',
+    marginLeft: '3%',
+    marginRight: '3%',
+    borderBottom: `3px solid ${theme.palette.grey[300]}`,
+    textDecoration: 'none',
+    outline: 'none',
+  },
+  mainLogo: {
+    height: '50px',
+    width: '50px',
+    marginRight: '10px',
+  },
+  mainLogoMobile: {
+    height: '40px',
+    width: '40px',
+    marginRight: '10px',
+  },
+  toolbarTitle: {
+    cursor: 'pointer',
+    display: 'flex',
+    marginLeft: '2%',
+    marginRight: 'auto',
+    textDecoration: 'none',
+    outline: 'none',
+  },
+  toolbarTitleMobile: {
+    display: 'flex',
+    width: '160px',
+    marginLeft: '1px',
+    marginRight: 'auto',
+    textDecoration: 'none',
+    outline: 'none',
+  },
+  logoTitle: {
+    fontFamily: 'NanumSquare',
+    fontSize: '30px',
+  },
+  logoTitleMobile: {
+    fontFamily: 'NanumSquare',
+    fontSize: '24px',
+  },
+  defaultIcon: {
+    fontFamily: 'NanumSquare',
+    fontSize: '38px',
+    marginLeft: 'auto',
+    marginRight: '8px'
+  },
+})
 
 class MypageProfile extends Component {
 
@@ -82,13 +144,13 @@ class MypageProfile extends Component {
               <Button >
                 <img src={logo} className={classes.mainLogo} />
                 <div className={classes.logoTitle} >
-                  Tablet
+                NonMobile
                 </div>
               </Button>
             </Link>
             <Link to="/">
               <IconButton color="action">
-                <HomeIcon className={classes.mypageIcon} />
+                <HomeIcon className={classes.defaultIcon} />
               </IconButton>
             </Link>
           </Toolbar>

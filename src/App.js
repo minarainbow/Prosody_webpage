@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import styles from './styles.js'
 import LoadingMessage from './containers/LoadingMessage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './containers/Home/Home';
-import Mypage from './containers/Mypage/Mypage';
 import MypageProfile from './containers/Mypage/MypageProfile'
 import MypagePayment from './containers/Mypage/MypagePayment';
-import API from './containers/API/API';
 import APIAbout from './containers/API/APIAbout';
 import APIOperation from './containers/API/APIOperation';
 
@@ -42,17 +39,17 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Home}></Route>
-          <Route exact path="/mypage" component={Mypage}></Route>
+          <Route exact path="/mypage" component={MypageProfile}></Route>
           <Route path="/mypage/profile" component={MypageProfile}></Route>
           <Route path="/mypage/payment" component={MypagePayment}></Route>
-          <Route exact path="/api" component={API}></Route>
+          <Route exact path="/api" component={APIAbout}></Route>
           <Route path="/api/about" component={APIAbout}></Route>
           <Route path="/api/operation" component={APIOperation}></Route>
-          <Route path="/api/f&q" component={API}></Route>
+          <Route path="/api/f&q" component={APIOperation}></Route>
         </div>
       </Router>
     );
   }
 }
 
-export default withStyles(styles)(App);
+export default App;

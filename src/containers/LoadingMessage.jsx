@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import styles from '../styles.js'
 import ReactLoading from 'react-loading';
+
+const styles = theme => ({
+    loadingPage: {
+        fontFamily: 'NanumSquare',
+        color: 'white',
+        fontSize: "30px",
+        width: '100%',
+        height: '100vh',
+        background: 'linear-gradient(to right, #58C2DF  , #393253)',
+      },
+      loadingAnimation: {
+        position: 'relative',
+        top: '25%',
+        left: '47%',
+      },
+      loadingTitle: {
+        paddingTop: '100px',
+        textAlign: 'center',
+        color: "white",
+      },
+  })
 
 
 class LoadingMessage extends Component {

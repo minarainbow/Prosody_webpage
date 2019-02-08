@@ -3,7 +3,7 @@ import Breakpoint from './breakpoint'
 
 export default function TabletBreakpoint(props) {
     return (
-        <Breakpoint name="phone">
+        <Breakpoint name="mobile">
             {props.children}
         </Breakpoint>
     );

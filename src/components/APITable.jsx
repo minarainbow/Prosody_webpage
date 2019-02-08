@@ -100,11 +100,11 @@ function APITable(props) {
   const { classes } = props;
 
   const state = {
-    phone: props.phone,
+    mobile: props.mobile,
   };
 
   return (
-    <div className={(state.phone? classes.rootMobile : classes.root) }>
+    <div className={(state.mobile? classes.rootMobile : classes.root) }>
       <div className={classes.title} >
         휴멜로 오픈 API 목록
         </div>

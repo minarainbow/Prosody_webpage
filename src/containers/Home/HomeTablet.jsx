@@ -224,7 +224,7 @@ class HomeTablet extends Component {
               {this.state.priceZoom.state && price.title == this.state.priceZoom.title ? price.price : null}
             </div>
           </div>
-          <div className={classes.tabletDescription} style={{ marginTop: '5%', marginLeft: '3%', width: '40vw' }}>
+          <div className={classes.descriptionTablet} style={{ marginTop: '5%', marginLeft: '3%', width: '40vw' }}>
             {price.description}
           </div>
         </div>)
@@ -276,7 +276,7 @@ class HomeTablet extends Component {
             </Link>
             <div>
               <IconButton color="action" onClick={this.handleIconClick}>
-                <PersonIcon className={classes.mypageIcon} />
+                <PersonIcon className={classes.defaultIcon} />
               </IconButton>
               {this.showProfileMenu()}
             </div>
@@ -328,10 +328,10 @@ class HomeTablet extends Component {
                   onMouseEnter={(event) => this.featureMouseHandler(event, true, feature.title)}
                   onMouseLeave={(event) => this.featureMouseHandler(event, false, feature.title)}>
                   <img src={feature.image} width="80%" className={this.divideFeatures(feature.title, classes)} className={this.featureMouseState(classes, feature.title)} />
-                  <div className={classes.tabletTitle}>
+                  <div className={classes.titleTablet}>
                     {feature.title}
                   </div><br />
-                  <div className={classes.tabletDescription}>
+                  <div className={classes.descriptionTablet}>
                     {feature.description1}<br />{feature.description2}<br />{feature.description3}<br />{feature.description4}<br />
                   </div>
                 </div>
