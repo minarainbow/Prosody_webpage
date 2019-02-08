@@ -14,7 +14,7 @@ import Drawer from '@material-ui/core/Drawer';
 import classNames from 'classnames';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Divider from '@material-ui/core/Divider';
-import { sections, APIfeatures, prices } from '../scripts';
+import { APImenu } from '../scripts';
 
 class APIAbout extends Component {
 
@@ -73,18 +73,19 @@ class APIAbout extends Component {
                             </IconButton>
                         </div>
                         <Divider />
-                        {sections.map(section => (
+                        {APImenu.map(menuItem => (
                             <div >
-                                <Button color="inherit" style={{ fontSize: '18px', width: '100%', paddingTop: '15%', paddingBottom: '15%' }} key={section} >
-                                    <section.icon color="action" style={{ position: 'absolute', left: '15px', fontSize: '30px', paddingRight: '10px' }} />
-                                    <div style={{ position: 'absolute', left: '60px' }}>
-                                        {section.title}
-                                    </div>
-                                </Button>
+                                <Link to={menuItem.link} style={{ textDecoration: 'none', outline: 'none', }}>
+                                    <Button style={{ fontSize: '18px', width: '100%', paddingTop: '15%', paddingBottom: '15%' }} key={menuItem} >
+                                        <div style={{ position: 'absolute', left: '60px' }}>
+                                            {menuItem.title}
+                                        </div>
+                                    </Button>
+                                </Link>
                             </div>
                         ))}
                     </Drawer>
-                    <APITable phone={true}/>
+                    <APITable phone={true} />
                 </div>
             </React.Fragment>
         );
